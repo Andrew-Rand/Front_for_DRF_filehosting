@@ -1,6 +1,6 @@
 <template>
-    <div class='files-page'>
-        <h1>All user files</h1>
+    <div class='user-page'>
+        <h1>Edit information about User</h1>
     </div>
 </template>
 
@@ -8,6 +8,6 @@
 import axios from 'axios'
 
 export default {
-    name: 'Files'
+    name: 'UserEdit'
 }
 </script>

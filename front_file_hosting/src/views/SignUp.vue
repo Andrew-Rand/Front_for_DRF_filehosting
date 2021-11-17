@@ -35,7 +35,7 @@ export default {
         }
     },
     methods: {
-        submitForm(e){
+        submitForm(){
             const formData = {
                 first_name: this.first_name,
                 last_name: this.last_name,
@@ -45,10 +45,10 @@ export default {
                 age: this.age,
             }
             axios
-                .post('/api/accounts/register/', formData)
+                .post('accounts/register/', formData)
                 .then(response => {
                     console.log(response)
-                    this.$router.push('/')
+                    this.$router.push('/login')
                 })
                 .catch(error => {
                     console.log(error)

@@ -6,15 +6,20 @@ export default createStore({
     refresh: ''
   },
   mutations: {
-    initializeStorage(state) {
-    if (localStorage.getItem('access')){
-        state.access = localStorage.getItem('access')
+    initializeStore(state) {
+        if (localStorage.getItem('access')){
+            state.access = localStorage.getItem('access')
+            state.refresh = localStorage.getItem('refresh')
         } else {
             state.access = ''
+            state.refresh = ''
         }
     },
     setAccess(state, access) {
         state.access = access
+    },
+    setRefresh(state, refresh) {
+        state.refresh = refresh
     }
   },
   actions: {

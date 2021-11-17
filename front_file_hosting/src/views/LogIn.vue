@@ -23,7 +23,7 @@ export default {
         }
     },
     methods:{
-        submitForm(e) {
+        submitForm() {
             axios.defaults.headers.common['Authorization'] = ''
             localStorage.removeItem('access')
 
@@ -33,9 +33,27 @@ export default {
             }
 
             axios
-                .post('/api/accounts/login/', formData)
+                .post('accounts/login/', formData)
                 .then(response => {
                     console.log(response)
+
+                    console.log(response.data.data.result.access_token)
+                    console.log(response.data.data.result.refresh_token)
+
+                    const access = response.data.data.result.access_token
+                    const refresh = response.data.data.result.refresh_token
+
+                    localStorage.setItem('access', access)
+                    localStorage.setItem('refresh', refresh)
+
+                    this.$store.commit('setAccess', access)
+                    this.$store.commit('setRefresh', refresh)
+
+                    axios.defaults.headers.common['Authorization'] = access
+
+
+
+                    this.$router.push('/user')
 
                 })
                 .catch(error => {
