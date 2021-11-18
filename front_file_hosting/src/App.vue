@@ -4,11 +4,28 @@
     <router-link to="/register">Sign up</router-link> |
     <router-link to="/login">log in</router-link> |
     <router-link to="/user">User</router-link> |
-    <router-link to="/user/edit">User Edit</router-link> |
     <router-link to="/user/change_password">Change Password</router-link> |
     <router-link to="/files">Files</router-link> |
+    <router-link to="/upload">Upload</router-link> |
   </div>
+
+  <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+        <span class="fs-4"><i>The best storage for your files</i></span>
+    </a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Home</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#/register">Sign Up</a>
+        <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
+        <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
+        <a class="py-2 me-4 text-dark text-decoration-none" href="#/user/change_password">Change password</a>
+        <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
+        <a class="btn btn-primary" href="#/upload">Upload File</a>
+    </nav>
+  </div>
+
   <router-view/>
+
 </template>
 
 <script>
@@ -67,24 +84,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+    @import './style/style.css';
 </style>

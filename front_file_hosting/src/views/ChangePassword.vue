@@ -1,14 +1,15 @@
 <template>
-    <div class='user_page'>
+    <div class='container'>
         <h1>Change_password</h1>
+        <br>
         <form @submit.prevent='submitForm'>
             <label>Password:</label>
-            <input type='password' name='password' v-model = 'password'> <br><br>
+            <input class="form-control" type='password' name='password' v-model = 'password'> <br>
             <label>New Password:</label>
-            <input type='password' name='new_password' v-model = 'new_password'> <br><br>
+            <input class="form-control" type='password' name='new_password' v-model = 'new_password'> <br>
             <label>New Password repeat:</label>
-            <input type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br><br>
-            <button type='submit'>Change Password</button>
+            <input class="form-control" type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br>
+            <button class="btn btn-success" type='submit'>Change Password</button>
         </form>
     </div>
 </template>

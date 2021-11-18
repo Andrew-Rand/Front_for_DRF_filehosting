@@ -1,20 +1,20 @@
 <template>
-    <div class='sign-up-page'>
+    <div class='container'>
         <h1>Register a new user</h1>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
-            <input type='username' name='username' v-model = 'username'> <br><br>
+            <input class="form-control" type='username' name='username' v-model = 'username'> <br>
             <label>Email:</label>
-            <input type='email' name='email' v-model = 'email'> <br><br>
+            <input class="form-control" type='email' name='email' v-model = 'email'> <br>
             <label>First Name:</label>
-            <input type='first_name' name='first_name' v-model = 'first_name'> <br><br>
+            <input class="form-control" type='first_name' name='first_name' v-model = 'first_name'> <br>
             <label>Last name:</label>
-            <input type='last_name' name='last_name' v-model = 'last_name'> <br><br>
+            <input class="form-control" type='last_name' name='last_name' v-model = 'last_name'> <br>
             <label>Age:</label>
-            <input type='age' name='age' v-model = 'age'> <br><br>
+            <input class="form-control" type='age' name='age' v-model = 'age'> <br>
             <label>Password:</label>
-            <input type='password' name='password' v-model = 'password'> <br><br>
-            <button type='submit'>Create new user</button>
+            <input class="form-control" type='password' name='password' v-model = 'password'><br>
+            <button class="btn btn-success" type='submit'>Create new user</button>
         </form>
     </div>
 </template>

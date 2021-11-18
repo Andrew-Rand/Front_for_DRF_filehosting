@@ -1,20 +1,22 @@
 <template>
-    <div class='user-page'>
+    <div class='container'>
         <h1>About you</h1>
         <span :src='userdata'>{{ user_data }}</span>
     </div>
+    <div class='container'>
     <form @submit.prevent='submitForm'>
         <label>Email:</label>
-        <input type='email' name='email' v-model = 'email'> <br><br>
+        <input class="form-control" type='email' name='email' v-model = 'email'> <br>
         <label>First Name:</label>
-        <input type='text' name='first_name' v-model = 'first_name'> <br><br>
+        <input class="form-control" type='text' name='first_name' v-model = 'first_name'> <br>
         <label>Last name:</label>
-        <input type='last_name' name='last_name' v-model = 'last_name'> <br><br>
+        <input class="form-control" type='last_name' name='last_name' v-model = 'last_name'> <br>
         <label>Age:</label>
-        <input type='age' name='age' v-model = 'age'> <br><br>
-        <button type='submit'>Change user data</button>
+        <input class="form-control" type='age' name='age' v-model = 'age'> <br>
+        <button class="btn btn-success" type='submit'>Change user data</button>
     </form>
-    <button @click='navigateHtml'>Change password</button>
+    <button class="btn btn-warning" @click='navigateHtml'>Change password</button>
+    </div>
 </template>
 
 <script>

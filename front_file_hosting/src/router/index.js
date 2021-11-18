@@ -4,8 +4,8 @@ import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
 import Files from '../views/Files.vue'
 import User from '../views/User.vue'
-import UserEdit from '../views/UserEdit.vue'
 import ChangePassword from '../views/ChangePassword.vue'
+import Upload from '../views/Upload.vue'
 
 const routes = [
   {
@@ -29,11 +29,6 @@ const routes = [
     component: User
   },
   {
-    path: '/user/edit',
-    name: 'User Edit',
-    component: UserEdit
-  },
-  {
     path: '/user/change_password',
     name: 'Change Password',
     component: ChangePassword
@@ -42,6 +37,11 @@ const routes = [
     path: '/files',
     name: 'Files',
     component: Files
+  },
+    {
+    path: '/upload',
+    name: 'Upload',
+    component: Upload
   }
 ]
 

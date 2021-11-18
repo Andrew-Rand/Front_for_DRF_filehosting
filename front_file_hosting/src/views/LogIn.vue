@@ -1,12 +1,13 @@
 <template>
-    <div class='login-page'>
+    <div class='container'>
         <h1>Log in</h1>
+        <br>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
-            <input type='username' name='username' v-model = 'username'> <br><br>
+            <input class="form-control" type='username' name='username' v-model = 'username'> <br>
             <label>Password:</label>
-            <input type='password' name='password' v-model = 'password'> <br><br>
-            <button type='submit'>Log in</button>
+            <input class="form-control" type='password' name='password' v-model = 'password'> <br>
+            <button class="btn btn-success" type='submit'>Log in</button>
         </form>
     </div>
 </template>
