@@ -15,6 +15,7 @@
         <input class="form-control" type='age' name='age' v-model = 'age'> <br>
         <button class="btn btn-success" type='submit'>Change user data</button>
     </form>
+    <br>
     <button class="btn btn-warning" @click='navigateHtml'>Change password</button>
     </div>
 </template>
