@@ -1,25 +1,20 @@
 <template>
     <div class='container'>
-        <h1>All user files</h1>
+        <h1>File detail</h1>
         <span :src='filedata'>{{ file_data }}</span>
         <div class="container">
-            <h3>All your files</h3>
-                <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
-                <div class='container' v-for='file in file_data' :key='file.id'>
-                <br>
-                <h4>{{ file.name}}</h4>
-                <button class="btn btn-primary btn-lg btn-block" @click='Download'>Download</button>
-                <p>Type: {{ file.type }}</p>
-                <p>Data created: {{ file.date_created }}</p>
-                <p>Data modified: {{ file.date_modified }}</p>
-                <form @submit.prevent='submitForm'>
-                    <label>Description:</label>
-                    <input class="form-control" type='description' name='description' v-model = 'description'><br>
-                    <button class="btn btn-warning" type='submit'>Change description</button>
-                </form>
-                <br>
-            </div>
-
+            <br>
+            <h4>{{ file_data.name}}</h4>
+            <p>Type: {{ file_data.type }}</p>
+            <p>Data created: {{ file_data.date_created }}</p>
+            <p>Data modified: {{ file_data.date_modified }}</p>
+            <form @submit.prevent='submitForm'>
+                <label>Description:</label>
+                <input class="form-control" type='description' name='description' v-model = 'description'>
+                <button class="btn btn-warning" type='submit'>Change description</button>
+            </form>
+            <br>
+            <button class="btn btn-primary btn-lg btn-block" @click='Download'>Download</button>
         </div>
     </div>
 </template>
@@ -31,7 +26,8 @@ export default {
     name: 'Files',
     data() {
         return{
-            file_data: []
+            file_data: [],
+            id : ''
         }
     },
     mounted() {
@@ -39,13 +35,14 @@ export default {
     },
     methods: {
         getMe() {
-
+            this.id = this.$route.params.id
             axios
-                .get('files//')
+                .get('files/' + this.id + '/')
                 .then(
                     response => {
                         console.log(response)
-                        this.file_data = response.data.data.result
+                        console.log(this.$route.params.id)
+                        this.file_data = response.data
                     }
                 )
                 .catch(

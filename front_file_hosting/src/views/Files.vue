@@ -21,7 +21,8 @@ export default {
     name: 'Files',
     data() {
         return{
-            file_data: []
+            file_data: [],
+            id: '',
         }
     },
     mounted() {
@@ -50,7 +51,10 @@ export default {
                 .then(response => {
                     console.log(id)
                     console.log(response)
-                    this.$router.push('/file_detail')
+                    this.$router.push({
+                        name: 'File',
+                        params: { id: id}
+                    });
                 })
                 .catch(error => {
                     console.log(error)
