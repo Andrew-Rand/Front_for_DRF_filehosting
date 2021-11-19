@@ -1,7 +1,6 @@
 <template>
     <div class='container'>
         <h1>File detail</h1>
-        <span :src='filedata'>{{ file_data }}</span>
         <div class="container">
             <br>
             <h4>{{ file_data.name}}</h4><br>
@@ -35,7 +34,9 @@ export default {
     },
     methods: {
         getMe() {
-            this.id = this.$route.params.id
+            if (this.$route.params.id !== undefined){
+                this.id = this.$route.params.id
+            }
             axios
                 .get('files/' + this.id + '/')
                 .then(
@@ -67,6 +68,19 @@ export default {
         },
         Download() {
             console.log('download start')
+
+            axios
+                .get('files/' + this.id + '/download/')
+                .then(
+                    response => {
+                        console.log(response)
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
 
             console.log('download finish')
         },
