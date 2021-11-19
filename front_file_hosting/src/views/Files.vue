@@ -65,7 +65,6 @@ export default {
         },
         Download(id) {
             console.log('download start')
-
             axios
                 .get('files/' + id + '/download/')
                 .then(response => {
