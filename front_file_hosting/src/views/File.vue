@@ -4,7 +4,7 @@
         <span :src='filedata'>{{ file_data }}</span>
         <div class="container">
             <br>
-            <h4>{{ file_data.name}}</h4>
+            <h4>{{ file_data.name}}</h4><br>
             <p>Type: {{ file_data.type }}</p>
             <p>Data created: {{ file_data.date_created }}</p>
             <p>Data modified: {{ file_data.date_modified }}</p>
@@ -43,6 +43,7 @@ export default {
                         console.log(response)
                         console.log(this.$route.params.id)
                         this.file_data = response.data
+                        this.description = response.data.description
                     }
                 )
                 .catch(
@@ -56,7 +57,7 @@ export default {
                 description: this.description,
             }
             axios
-                .patch('files/{{ file.id }}/', formData)
+                .patch('files/' + this.id + '/', formData)
                 .then(response => {
                     console.log(response)
                 })
