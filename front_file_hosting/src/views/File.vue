@@ -58,6 +58,8 @@ export default {
                 .patch('files/' + localStorage.getItem('file_id') + '/', formData)
                 .then(response => {
                     console.log(response)
+                    alert('File description has changed.')
+                    this.$router.push('/file_detail')
                 })
                 .catch(error => {
                     console.log(error)

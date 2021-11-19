@@ -66,6 +66,7 @@ export default {
                 .patch('accounts/profile/', formData)
                 .then(response => {
                     console.log(response)
+                    alert('User data have changed.')
                     this.$router.push('/user')
                 })
                 .catch(error => {
