@@ -36,6 +36,7 @@ export default {
             axios
                 .post('accounts/login/', formData)
                 .then(response => {
+
                     console.log(response)
 
                     console.log(response.data.data.result.access_token)
@@ -52,12 +53,11 @@ export default {
 
                     axios.defaults.headers.common['Authorization'] = access
 
-
-
                     this.$router.push('/user')
 
                 })
                 .catch(error => {
+                    alert(error + '. Please, check username and password and try again')
                     console.log(error)
                 })
         }

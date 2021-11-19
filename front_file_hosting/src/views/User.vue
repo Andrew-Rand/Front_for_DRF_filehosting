@@ -51,6 +51,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        alert(error + '. You are not authorized. Please login yourself before seeing your profile.')
                     }
                 )
         },
@@ -69,6 +70,7 @@ export default {
                 })
                 .catch(error => {
                     console.log(error)
+                    alert(error)
                 })
         },
         navigateHtml() {

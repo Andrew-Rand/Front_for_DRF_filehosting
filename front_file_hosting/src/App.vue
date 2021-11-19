@@ -19,7 +19,6 @@
         <a class="me-3 py-2 text-dark text-decoration-none" href="#/register">Sign Up</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
-        <a class="py-2 me-4 text-dark text-decoration-none" href="#/user/change_password">Change password</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
         <a class="btn btn-primary" href="#/upload">Upload File</a>
     </nav>

@@ -6,7 +6,7 @@
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
                     <h4>{{ file.name}}</h4>
-                    <button class="btn btn-primary btn-lg btn-block" @click='Download'>Download</button>
+                    <button class="btn btn-primary btn-lg btn-block" @click='Download(file.id)'>Download</button>
                     <button class="btn btn-warning" @click='Detail(file.id)'>Detail</button>
                     <br>
                 </div>
@@ -50,27 +50,31 @@ export default {
                 .get('files/' + id + '/')
                 .then(response => {
                     console.log(id)
+
+                    const file_id = id
+                    localStorage.setItem('file_id', file_id)
+                    this.$store.commit('setFileId', file_id)
+
                     console.log(response)
-                    this.$router.push({
-                        name: 'File',
-                        params: { id: id}
-                    });
+                    this.$router.push('/file_detail');
                 })
                 .catch(error => {
                     console.log(error)
+                    alert(error)
                 })
         },
-        Download() {
+        Download(id) {
             console.log('download start')
 
             axios
-                .patch('files/{{ file.id }}/download/')
+                .get('files/' + id + '/download/')
                 .then(response => {
                     console.log(response)
                     this.$router.push('/files')
                 })
                 .catch(error => {
                     console.log(error)
+                    alert(error)
                 })
                 console.log('download finish')
         },
@@ -86,6 +90,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        alert(error)
                     }
                 )
             console.log('download finish')

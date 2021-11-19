@@ -51,6 +51,7 @@ export default {
                     this.$router.push('/login')
                 })
                 .catch(error => {
+                    alert(error + '. This user already exist or user data is not correct. Please check your data and try again')
                     console.log(error)
                 })
         }

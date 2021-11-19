@@ -25,8 +25,7 @@ export default {
     name: 'Files',
     data() {
         return{
-            file_data: [],
-            id : ''
+            file_data: []
         }
     },
     mounted() {
@@ -34,15 +33,12 @@ export default {
     },
     methods: {
         getMe() {
-            if (this.$route.params.id !== undefined){
-                this.id = this.$route.params.id
-            }
+            console.log(localStorage.getItem('file_id'))
             axios
-                .get('files/' + this.id + '/')
+                .get('files/' + localStorage.getItem('file_id') + '/')
                 .then(
                     response => {
                         console.log(response)
-                        console.log(this.$route.params.id)
                         this.file_data = response.data
                         this.description = response.data.description
                     }
@@ -50,6 +46,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        alert(error)
                     }
                 )
         },
@@ -58,19 +55,20 @@ export default {
                 description: this.description,
             }
             axios
-                .patch('files/' + this.id + '/', formData)
+                .patch('files/' + localStorage.getItem('file_id') + '/', formData)
                 .then(response => {
                     console.log(response)
                 })
                 .catch(error => {
                     console.log(error)
+                    alert(error)
                 })
         },
         Download() {
             console.log('download start')
 
             axios
-                .get('files/' + this.id + '/download/')
+                .get('files/' + localStorage.getItem('file_id') + '/download/')
                 .then(
                     response => {
                         console.log(response)
@@ -79,6 +77,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        alert(error)
                     }
                 )
 
@@ -96,6 +95,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        alert(error)
                     }
                 )
             console.log('download finish')
