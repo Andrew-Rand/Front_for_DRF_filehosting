@@ -7,7 +7,7 @@
                     <br>
                     <h4>{{ file.name}}</h4>
                     <button class="btn btn-primary btn-lg btn-block" @click='Download'>Download</button>
-                    <button class="btn btn-warning" @click='Detail'>Detail</button>
+                    <button class="btn btn-warning" @click='Detail(file.id)'>Detail</button>
                     <br>
                 </div>
         </div>
@@ -44,10 +44,11 @@ export default {
                     }
                 )
         },
-        Detail(){
+        Detail(id){
             axios
-                .get('files//')
+                .get('files/' + id + '/')
                 .then(response => {
+                    console.log(id)
                     console.log(response)
                     this.$router.push('/file_detail')
                 })
