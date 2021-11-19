@@ -6,6 +6,7 @@ import Files from '../views/Files.vue'
 import User from '../views/User.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Upload from '../views/Upload.vue'
+import File from '../views/File.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/upload',
     name: 'Upload',
     component: Upload
+  },
+  {
+    path: '/file_detail',
+    name: 'File',
+    component: File
   }
 ]
 
