@@ -81,6 +81,21 @@ export default {
         })
         this.r.on('fileSuccess', (file, event) => {
             this.findFile(file).status = 'success'
+
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length  ,
+                    method: 'POST',
+                })
+                .then(response => {
+                        console.log(response)
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                        alert(error)
+                    }
+                )
         })
         this.r.on('fileError', (file, event) => {
             this.findFile(file).status = 'error'
@@ -111,3 +126,42 @@ export default {
 
 
 </script>
+
+<style lang="scss">
+.p-5 {
+	padding: 3rem;
+}
+.upload-videos {
+	display: flex;
+	flex-direction: column;
+}
+.video-dropzone {
+    height: 340px;
+    width: 340px;
+    padding: 16px;
+	display: flex;
+	align-self: center;
+	margin-bottom: 1.2rem;
+    cursor: pointer;
+    * {
+        pointer-events: none;
+    }
+    .dropzone-display {
+        height: 100%;
+        width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column	;
+        border: 4px dashed #222;
+        border-radius: 32px;
+        img {
+            width: 64px;
+        }
+		small {
+			font-size: 0.65em;
+			display: block;
+		}
+    }
+}
+</style>
