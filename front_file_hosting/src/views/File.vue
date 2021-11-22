@@ -34,8 +34,10 @@ export default {
     methods: {
         getMe() {
             console.log(localStorage.getItem('file_id'))
-            axios
-                .get('files/' + localStorage.getItem('file_id') + '/')
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/',
+                    method: 'GET',
+                })
                 .then(
                     response => {
                         console.log(response)
@@ -54,8 +56,12 @@ export default {
             const formData = {
                 description: this.description,
             }
-            axios
-                .patch('files/' + localStorage.getItem('file_id') + '/', formData)
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/',
+                    method: 'PATCH',
+                    data: formData
+
+                })
                 .then(response => {
                     console.log(response)
                     alert('File description has changed.')
@@ -69,13 +75,23 @@ export default {
         Download() {
             console.log('download start')
 
-            axios
-                .get('files/' + localStorage.getItem('file_id') + '/download/')
-                .then(
-                    response => {
-                        console.log(response)
-                    }
-                )
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/download/',
+                    method: 'GET',
+                    responseType: 'blob',
+                })
+                .then(response => {
+                    console.log(response)
+
+                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                    var fileLink = document.createElement('a');
+                    fileLink.href = fileURL;
+                    fileLink.setAttribute('download', 'file.jpg');
+                    document.body.appendChild(fileLink);
+                    fileLink.click();
+
+                    this.$router.push('/files')
+                })
                 .catch(
                     error => {
                         console.log(error)
@@ -83,23 +99,6 @@ export default {
                     }
                 )
 
-            console.log('download finish')
-        },
-        DownloadAll() {
-            console.log('download start')
-            axios
-                .get('files/download/')
-                .then(
-                    response => {
-                        console.log(response)
-                    }
-                )
-                .catch(
-                    error => {
-                        console.log(error)
-                        alert(error)
-                    }
-                )
             console.log('download finish')
         }
     }

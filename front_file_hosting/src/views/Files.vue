@@ -31,8 +31,10 @@ export default {
     methods: {
         getMe() {
 
-            axios
-                .get('files//')
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files//',
+                    method: 'GET',
+                })
                 .then(
                     response => {
                         console.log(response)
@@ -46,8 +48,10 @@ export default {
                 )
         },
         Detail(id){
-            axios
-                .get('files/' + id + '/')
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/' + id + '/',
+                    method: 'GET',
+                })
                 .then(response => {
                     console.log(id)
 
@@ -65,10 +69,21 @@ export default {
         },
         Download(id) {
             console.log('download start')
-            axios
-                .get('files/' + id + '/download/')
+            axios({
+                    url: 'http://127.0.0.1:1338/api/files/' + id + '/download/',
+                    method: 'GET',
+                    responseType: 'blob',
+                })
                 .then(response => {
                     console.log(response)
+
+                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                    var fileLink = document.createElement('a');
+                    fileLink.href = fileURL;
+                    fileLink.setAttribute('download', 'file.jpg');
+                    document.body.appendChild(fileLink);
+                    fileLink.click();
+                    
                     this.$router.push('/files')
                 })
                 .catch(error => {
