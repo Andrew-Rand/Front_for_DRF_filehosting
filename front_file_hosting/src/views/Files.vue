@@ -76,11 +76,11 @@ export default {
                 })
                 .then(response => {
                     console.log(response)
-
                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                     var fileLink = document.createElement('a');
+                    var type = response.headers['content-type']
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'file.jpg');
+                    fileLink.setAttribute('download', 'file' + type);
                     document.body.appendChild(fileLink);
                     fileLink.click();
                     
