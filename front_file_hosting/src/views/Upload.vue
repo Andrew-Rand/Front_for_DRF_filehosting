@@ -1,20 +1,19 @@
 <template>
-    <div class='files-page'>
+    <div class='container'>
         <h1>Upload files</h1>
     </div>
-    	<div class="upload-videos">
-        <div class="video-dropzone" ref="videodropzone">
+    	<div class="upload">
+        <div class="dropzone" ref="dropzone">
             <div class="dropzone-display">
                 <div class="p-5">
-                    <img src="/cloud-computing.svg" />
-					<small>Icon by <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
-                    <h3>Drop or click here to upload your content</h3>
-                    <p>Multiple files supported</p>
+                    <br>
+                    <h3>Drop or click here to upload your files</h3>
+                    <br>
                 </div>
             </div>
         </div>
 
-        <uploading-video
+        <uploading
             v-for="(file, index) in files"
             v-bind:key="file.file.uniqueIdentifier + index"
             :file="file.file"
@@ -29,32 +28,32 @@
 import axios from 'axios'
 
 import Resumable from './resumable.js'
-import UploadingVideo from './UploadingHelper'
+import Uploading from './UploadingHelper'
 
 export default {
     components: {
-        UploadingVideo
+        Uploading
     },
 
     data(){
         return {
-            files: [], // our local files array, we will pack in extra data to force reactivity
+            files: [],
             r: false
         }
     },
     methods: {
-        // finds the file in the local files array
+
         findFile(file){
             return this.files.find(item => item.file.uniqueIdentifier === file.uniqueIdentifier && item.status !== 'canceled') ?? {}
         },
-        // cancel an individual file
+
         cancelFile(file){
             this.findFile(file).status = 'canceled'
             file.cancel()
         }
     },
     mounted(){
-        // init resumablejs on mount
+
 		this.r = new Resumable({
 			target:'http://127.0.0.1:1338/api/files/chunk-upload/',
             maxChunkRetries: 1,
@@ -63,15 +62,15 @@ export default {
             testChunks:true,
             throttleProgressCallbacks:1
 		});
-		// Resumable.js isn't supported, fall back on a different method
+
 		if(!this.r.support) return alert('Your browser doesn\'t support chunked uploads. Get a better browser.');
-        this.r.assignBrowse(this.$refs.videodropzone);
-		this.r.assignDrop(this.$refs.videodropzone);
-        // set up event listeners to feed into vues reactivity
+        this.r.assignBrowse(this.$refs.dropzone);
+		this.r.assignDrop(this.$refs.dropzone);
+
         this.r.on('fileAdded', (file, event) => {
             file.hasUploaded = false
             console.log('this.files', this.files)
-            // keep a list of files with some extra data that we can use as props
+
             this.files.push({
                 file,
                 status: 'uploading',
@@ -82,6 +81,7 @@ export default {
         this.r.on('fileSuccess', (file, event) => {
             this.findFile(file).status = 'success'
 
+            delete axios.defaults.headers.common["Authorization"];
             axios({
                     url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length  ,
                     method: 'POST',
@@ -106,7 +106,7 @@ export default {
         this.r.on('fileProgress', (file) => {
             // console.log('fileProgress', progress)
             var localFile = this.findFile(file)
-            // if we are doing multiple chunks we may get a lower progress number if one chunk response comes back early
+
             var progress = file.progress()
             if( progress > localFile.progress)
                 localFile.progress = progress
@@ -131,11 +131,11 @@ export default {
 .p-5 {
 	padding: 3rem;
 }
-.upload-videos {
+.upload {
 	display: flex;
 	flex-direction: column;
 }
-.video-dropzone {
+.dropzone {
     height: 340px;
     width: 340px;
     padding: 16px;

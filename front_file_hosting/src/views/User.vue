@@ -37,7 +37,7 @@ export default {
         getMe() {
 
             axios
-                .get('accounts/profile/')
+                .get('profile/')
                 .then(
                     response => {
                         console.log(response)
@@ -51,7 +51,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
-                        alert(error + '. You are not authorized. Please login yourself before seeing your profile.')
+                        alert(error)
                     }
                 )
         },
@@ -63,7 +63,7 @@ export default {
                 age: this.age,
             }
             axios
-                .patch('accounts/profile/', formData)
+                .patch('profile/', formData)
                 .then(response => {
                     console.log(response)
                     alert('User data have changed.')
@@ -75,7 +75,7 @@ export default {
                 })
         },
         navigateHtml() {
-            window.location.href = '#/user/change_password'
+            window.location.href = '#/user/change-password'
         }
     }
 }

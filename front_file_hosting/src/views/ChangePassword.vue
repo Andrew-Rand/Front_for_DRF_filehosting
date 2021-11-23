@@ -1,13 +1,13 @@
 <template>
     <div class='container'>
-        <h1>Change_password</h1>
+        <h1>Change Password</h1>
         <br>
         <form @submit.prevent='submitForm'>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'> <br>
             <label>New Password:</label>
             <input class="form-control" type='password' name='new_password' v-model = 'new_password'> <br>
-            <label>New Password repeat:</label>
+            <label>Confirm new password:</label>
             <input class="form-control" type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br>
             <button class="btn btn-success" type='submit'>Change Password</button>
         </form>
@@ -34,7 +34,7 @@ export default {
                 new_password_repeated: this.new_password_repeated,
             }
             axios
-                .put('accounts/change_password/', formData)
+                .put('change_password/', formData)
                 .then(response => {
                     console.log(response)
                     this.$router.push('/login')

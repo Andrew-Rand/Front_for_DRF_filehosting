@@ -4,10 +4,11 @@
     <router-link to="/register">Sign up</router-link> |
     <router-link to="/login">log in</router-link> |
     <router-link to="/user">User</router-link> |
-    <router-link to="/user/change_password">Change Password</router-link> |
+    <router-link to="/user/change-password">Change Password</router-link> |
     <router-link to="/files">Files</router-link> |
     <router-link to="/upload">Upload</router-link> |
-    <router-link to="/file_detail">File</router-link> |
+    <router-link to="/file-detail">File</router-link> |
+    <router-link to="/non-chunk">NonChunkUpload</router-link> |
   </div>
 
   <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
@@ -20,7 +21,7 @@
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
-        <a class="btn btn-primary" href="http://127.0.0.1:1338/api/files/template/">Upload File</a>
+        <a class="btn btn-primary" href="#/upload">Upload File</a>
     </nav>
   </div>
 
@@ -62,9 +63,11 @@ export default {
                 console.log(response.data.data.result.access_token)
                 console.log(response.data.data.result.refresh_token)
 
-                const access = response.data.data.result.access_token
-                const refresh = response.data.data.result.refresh_token
-
+                const responseData = response.data;
+                if (responseData) {
+                    const access = responseData.data && responseData.data.result && responseData.data.result.access_token
+                    const refresh = responseData.data && responseData.data.result && responseData.data.result.refresh_token
+                }
                 localStorage.setItem('access', access)
                 localStorage.setItem('refresh', refresh)
 

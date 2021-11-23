@@ -4,7 +4,7 @@
         <br>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
-            <input class="form-control" type='username' name='username' v-model = 'username'> <br>
+            <input class="form-control" type='text' name='username' v-model = 'username'> <br>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'> <br>
             <button class="btn btn-success" type='submit'>Log in</button>
@@ -34,7 +34,7 @@ export default {
             }
 
             axios
-                .post('accounts/login/', formData)
+                .post('login/', formData)
                 .then(response => {
 
                     console.log(response)
@@ -57,7 +57,7 @@ export default {
 
                 })
                 .catch(error => {
-                    alert(error + '. Please, check username and password and try again')
+                    alert(error)
                     console.log(error)
                 })
         }

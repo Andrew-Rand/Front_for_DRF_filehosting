@@ -17,6 +17,8 @@
 <script>
 import axios from 'axios'
 
+const config = require('../config');
+
 export default {
     name: 'Files',
     data() {
@@ -32,7 +34,7 @@ export default {
         getMe() {
 
             axios({
-                    url: 'http://127.0.0.1:1338/api/files//',
+                    url: config.BaseFileUrl + '/',
                     method: 'GET',
                 })
                 .then(
@@ -49,18 +51,17 @@ export default {
         },
         Detail(id){
             axios({
-                    url: 'http://127.0.0.1:1338/api/files/' + id + '/',
+                    url: config.BaseFileUrl + id + '/',
                     method: 'GET',
                 })
                 .then(response => {
                     console.log(id)
 
-                    const file_id = id
-                    localStorage.setItem('file_id', file_id)
-                    this.$store.commit('setFileId', file_id)
+                    localStorage.setItem('file_id', id)
+                    this.$store.commit('setFileId', id)
 
                     console.log(response)
-                    this.$router.push('/file_detail');
+                    this.$router.push('/file-detail');
                 })
                 .catch(error => {
                     console.log(error)
@@ -70,17 +71,17 @@ export default {
         Download(id) {
             console.log('download start')
             axios({
-                    url: 'http://127.0.0.1:1338/api/files/' + id + '/download/',
+                    url: config.BaseFileUrl + id + '/download/',
                     method: 'GET',
                     responseType: 'blob',
                 })
                 .then(response => {
                     console.log(response)
-
                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                     var fileLink = document.createElement('a');
+                    var type = response.headers['content-type']
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'file.jpg');
+                    fileLink.setAttribute('download', 'file' + type);
                     document.body.appendChild(fileLink);
                     fileLink.click();
                     
@@ -95,7 +96,7 @@ export default {
         DownloadAll() {
             console.log('download start')
             axios
-                .get('files/download/')
+                .get(config.BaseFileUrl + 'download/')
                 .then(
                     response => {
                         console.log(response)

@@ -1,5 +1,5 @@
 <template>
-    <div class="uploading-video">
+    <div class="uploading">
         <span :class="{
             'status-canceled': status == 'canceled'
         }"> {{ file.fileName }} </span>
@@ -26,7 +26,7 @@ export default {
     ],
     data(){
         return {
-            isPaused: false // we upload straight away by default
+            isPaused: false
         }
     },
     computed: {
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="scss">
-.uploading-video {
+.uploading {
     .status-canceled {
         text-decoration: line-through;
     }
