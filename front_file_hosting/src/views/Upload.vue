@@ -115,24 +115,33 @@ export default {
       this.r.on('fileSuccess', (file) => {
         this.findFile(file).status = 'success'
         delete axios.defaults.headers.common['Authorization'];
-        this.description = this.$refs.description.value
-        if (this.description !== '') {
-          this.description = 'none'
-        }
-        axios({
-          url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length  ,
-          method: 'POST',
-        })
-                .then(response => {
-                        console.log(response)
-                    }
-                )
-            .catch(
-                error => {
-                  console.log(error)
-                  alert(error)
-                }
-            )
+        let description = this.$refs.description.value
+        if (description === '') {
+            description = 'None'}
+
+        let reader = new FileReader();
+            reader.readAsBinaryString(file.file);
+            reader.onload = function () {
+                let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
+                let md5 = hash.toString();
+                console.log('file hash:' + md5)
+
+
+                axios({
+                  url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
+                  method: 'POST',
+                })
+                        .then(response => {
+                                console.log(response)
+                            }
+                        )
+                    .catch(
+                        error => {
+                          console.log(error)
+                          alert(error)
+                        }
+                    )
+          }
       })
       this.r.on('fileError', (file) => {
         this.findFile(file).status = 'error'

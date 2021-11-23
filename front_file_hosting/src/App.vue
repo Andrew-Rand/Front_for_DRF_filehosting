@@ -63,10 +63,10 @@ export default {
                 console.log(response.data.data.result.refresh_token)
 
                 const responseData = response.data;
-                if (responseData) {
-                    const access = responseData.data && responseData.data.result && responseData.data.result.access_token
-                    const refresh = responseData.data && responseData.data.result && responseData.data.result.refresh_token
-                }
+
+                const access = responseData.data && responseData.data.result && responseData.data.result.access_token
+                const refresh = responseData.data && responseData.data.result && responseData.data.result.refresh_token
+
                 localStorage.setItem('access', access)
                 localStorage.setItem('refresh', refresh)
 
