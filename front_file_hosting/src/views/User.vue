@@ -56,11 +56,16 @@ export default {
                 )
         },
         submitForm(){
-            const formData = {
+            console.log(this.user_data.email)
+            let formData = {
                 first_name: this.first_name,
                 last_name: this.last_name,
-                email: this.email,
-                age: this.age,
+                age: this.age
+                }
+            if (this.user_data.email !== this.email) {
+                formData = {
+                    email: this.email,
+                }
             }
             axios
                 .patch('profile/', formData)
