@@ -20,7 +20,7 @@
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
-        <a class="btn btn-primary" href="http://127.0.0.1:1338/api/files/template/">Upload File</a>
+        <a class="btn btn-primary" href="#/upload">Upload File</a>
     </nav>
   </div>
 

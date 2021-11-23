@@ -2,8 +2,8 @@
     <div class='container'>
         <h1>Upload files</h1>
     </div>
-    	<div class="upload-videos">
-        <div class="video-dropzone" ref="videodropzone">
+    	<div class="upload">
+        <div class="dropzone" ref="dropzone">
             <div class="dropzone-display">
                 <div class="p-5">
                     <br>
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <uploading-video
+        <uploading
             v-for="(file, index) in files"
             v-bind:key="file.file.uniqueIdentifier + index"
             :file="file.file"
@@ -28,11 +28,11 @@
 import axios from 'axios'
 
 import Resumable from './resumable.js'
-import UploadingVideo from './UploadingHelper'
+import Uploading from './UploadingHelper'
 
 export default {
     components: {
-        UploadingVideo
+        Uploading
     },
 
     data(){
@@ -64,8 +64,8 @@ export default {
 		});
 		// Resumable.js isn't supported, fall back on a different method
 		if(!this.r.support) return alert('Your browser doesn\'t support chunked uploads. Get a better browser.');
-        this.r.assignBrowse(this.$refs.videodropzone);
-		this.r.assignDrop(this.$refs.videodropzone);
+        this.r.assignBrowse(this.$refs.dropzone);
+		this.r.assignDrop(this.$refs.dropzone);
         // set up event listeners to feed into vues reactivity
         this.r.on('fileAdded', (file, event) => {
             file.hasUploaded = false
@@ -131,11 +131,11 @@ export default {
 .p-5 {
 	padding: 3rem;
 }
-.upload-videos {
+.upload {
 	display: flex;
 	flex-direction: column;
 }
-.video-dropzone {
+.dropzone {
     height: 340px;
     width: 340px;
     padding: 16px;
