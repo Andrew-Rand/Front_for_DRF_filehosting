@@ -21,6 +21,8 @@
 <script>
 import axios from 'axios'
 
+const config = require('../config');
+
 export default {
     name: 'Files',
     data() {
@@ -35,7 +37,7 @@ export default {
         getMe() {
             console.log(localStorage.getItem('file_id'))
             axios({
-                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/',
+                    url: config.BaseFileUrl + localStorage.getItem('file_id') + '/',
                     method: 'GET',
                 })
                 .then(
@@ -57,7 +59,7 @@ export default {
                 description: this.description,
             }
             axios({
-                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/',
+                    url: config.BaseFileUrl + localStorage.getItem('file_id') + '/',
                     method: 'PATCH',
                     data: formData
 
@@ -76,7 +78,7 @@ export default {
             console.log('download start')
 
             axios({
-                    url: 'http://127.0.0.1:1338/api/files/' + localStorage.getItem('file_id') + '/download/',
+                    url: config.BaseFileUrl + localStorage.getItem('file_id') + '/download/',
                     method: 'GET',
                     responseType: 'blob',
                 })

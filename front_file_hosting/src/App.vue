@@ -4,10 +4,10 @@
     <router-link to="/register">Sign up</router-link> |
     <router-link to="/login">log in</router-link> |
     <router-link to="/user">User</router-link> |
-    <router-link to="/user/change_password">Change Password</router-link> |
+    <router-link to="/user/change-password">Change Password</router-link> |
     <router-link to="/files">Files</router-link> |
     <router-link to="/upload">Upload</router-link> |
-    <router-link to="/file_detail">File</router-link> |
+    <router-link to="/file-detail">File</router-link> |
   </div>
 
   <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">

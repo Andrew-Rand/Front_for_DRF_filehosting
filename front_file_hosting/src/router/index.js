@@ -30,7 +30,7 @@ const routes = [
     component: User
   },
   {
-    path: '/user/change_password',
+    path: '/user/change-password',
     name: 'Change Password',
     component: ChangePassword
   },
@@ -45,7 +45,7 @@ const routes = [
     component: Upload
   },
   {
-    path: '/file_detail',
+    path: '/file-detail',
     name: 'File',
     component: File
   }

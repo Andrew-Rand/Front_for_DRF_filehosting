@@ -45,13 +45,13 @@ export default {
                 age: this.age,
             }
             axios
-                .post('accounts/register/', formData)
+                .post('register/', formData)
                 .then(response => {
                     console.log(response)
                     this.$router.push('/login')
                 })
                 .catch(error => {
-                    alert(error + '. This user already exist or user data is not correct. Please check your data and try again')
+                    alert(error)
                     console.log(error)
                 })
         }
