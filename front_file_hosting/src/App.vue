@@ -56,7 +56,7 @@ export default {
             }
 
         axios
-            .post('accounts/refresh/', accessData)
+            .post('refresh/', accessData)
             .then(response => {
 
                 console.log(response.data.data.result.access_token)

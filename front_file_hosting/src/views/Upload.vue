@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import CryptoJS from 'crypto-js'
 import Resumable from './resumable.js'
 import Uploading from './UploadingHelper'
 
@@ -71,16 +72,26 @@ export default {
             })
             this.r.upload()
           } else {
+
+
+
             let formData = new FormData();
             formData.append('file', file.file)
             formData.append('total_size', file.size)
             formData.append('type', file.file.type)
             formData.append('filename', file.fileName)
-            formData.append('hash_sum', 'cab9279871936b5c987531c5f1de1a15')
             formData.append('description', this.$refs.description.value)
 
             delete axios.defaults.headers.common['Authorization'];
-            axios.post('http://127.0.0.1:1338/api/files/file-upload/', formData)
+            let reader = new FileReader();
+            reader.readAsBinaryString(file.file);
+            reader.onload = function () {
+                let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
+                let md5 = hash.toString();
+                formData.append('hash', md5);
+                console.log('file hash:' + md5)
+
+             axios.post('http://127.0.0.1:1338/api/files/file-upload/', formData)
                 .then(resp => {
                   console.log(resp.data)
                 })
@@ -93,6 +104,7 @@ export default {
                     console.log(errorStatus)
                   }
                 })
+            };
           }
         } catch (error) {
           this.$router.push('/login')
