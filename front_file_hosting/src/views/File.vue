@@ -67,7 +67,7 @@ export default {
                 .then(response => {
                     console.log(response)
                     alert('File description has changed.')
-                    this.$router.push('/file_detail')
+                    this.$router.push('/file-detail')
                 })
                 .catch(error => {
                     console.log(error)
