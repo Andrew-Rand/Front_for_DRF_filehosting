@@ -7,6 +7,7 @@ import User from '../views/User.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Upload from '../views/Upload.vue'
 import File from '../views/File.vue'
+import Build from '../views/Build.vue'
 
 const routes = [
   {
@@ -49,6 +50,7 @@ const routes = [
     name: 'File',
     component: File
   }
+
 ]
 
 const router = createRouter({
