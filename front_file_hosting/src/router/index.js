@@ -7,7 +7,6 @@ import User from '../views/User.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Upload from '../views/Upload.vue'
 import File from '../views/File.vue'
-import NonChunkUpload from '../views/NonChunkUpload.vue'
 
 const routes = [
   {
@@ -49,11 +48,6 @@ const routes = [
     path: '/file-detail',
     name: 'File',
     component: File
-  },
-  {
-    path: '/non-chunk',
-    name: 'NonChunkUpload',
-    component: NonChunkUpload
   }
 ]
 

@@ -3,10 +3,11 @@
     <h1>Upload files</h1>
   </div>
   <div class='container'>
-  <input type="file" ref="file">
-  <input type='text' ref="description">
+  <label>Open your file:</label>
+  <input type='file' ref='file'><br><br>
+  <label>Add description:</label>
+  <input type='text' ref='description'>
 
-  <!--    <button v-on:click="resumableUpload">Upload</button>-->
   <uploading
       v-for="(file, index) in files"
       v-bind:key="file.file.uniqueIdentifier + index"
@@ -101,7 +102,7 @@ export default {
 
       this.r.on('fileSuccess', (file) => {
         this.findFile(file).status = 'success'
-        delete axios.defaults.headers.common["Authorization"];
+        delete axios.defaults.headers.common['Authorization'];
         this.description = this.$refs.description.value
         if (this.description !== '') {
           this.description = 'none'
