@@ -8,6 +8,7 @@
     <router-link to="/files">Files</router-link> |
     <router-link to="/upload">Upload</router-link> |
     <router-link to="/file-detail">File</router-link> |
+    <router-link to="/non-chunk">NonChunkUpload</router-link> |
   </div>
 
   <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
