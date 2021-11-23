@@ -26,7 +26,7 @@ export default {
     ],
     data(){
         return {
-            isPaused: false // we upload straight away by default
+            isPaused: false
         }
     },
     computed: {

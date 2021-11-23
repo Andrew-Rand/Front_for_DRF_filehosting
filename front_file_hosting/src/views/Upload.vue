@@ -37,23 +37,23 @@ export default {
 
     data(){
         return {
-            files: [], // our local files array, we will pack in extra data to force reactivity
+            files: [],
             r: false
         }
     },
     methods: {
-        // finds the file in the local files array
+
         findFile(file){
             return this.files.find(item => item.file.uniqueIdentifier === file.uniqueIdentifier && item.status !== 'canceled') ?? {}
         },
-        // cancel an individual file
+
         cancelFile(file){
             this.findFile(file).status = 'canceled'
             file.cancel()
         }
     },
     mounted(){
-        // init resumablejs on mount
+
 		this.r = new Resumable({
 			target:'http://127.0.0.1:1338/api/files/chunk-upload/',
             maxChunkRetries: 1,
@@ -62,15 +62,15 @@ export default {
             testChunks:true,
             throttleProgressCallbacks:1
 		});
-		// Resumable.js isn't supported, fall back on a different method
+
 		if(!this.r.support) return alert('Your browser doesn\'t support chunked uploads. Get a better browser.');
         this.r.assignBrowse(this.$refs.dropzone);
 		this.r.assignDrop(this.$refs.dropzone);
-        // set up event listeners to feed into vues reactivity
+
         this.r.on('fileAdded', (file, event) => {
             file.hasUploaded = false
             console.log('this.files', this.files)
-            // keep a list of files with some extra data that we can use as props
+
             this.files.push({
                 file,
                 status: 'uploading',
@@ -106,7 +106,7 @@ export default {
         this.r.on('fileProgress', (file) => {
             // console.log('fileProgress', progress)
             var localFile = this.findFile(file)
-            // if we are doing multiple chunks we may get a lower progress number if one chunk response comes back early
+
             var progress = file.progress()
             if( progress > localFile.progress)
                 localFile.progress = progress
