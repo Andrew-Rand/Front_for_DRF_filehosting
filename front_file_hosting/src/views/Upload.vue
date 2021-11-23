@@ -1,15 +1,14 @@
 <template>
-    <div class='files-page'>
+    <div class='container'>
         <h1>Upload files</h1>
     </div>
     	<div class="upload-videos">
         <div class="video-dropzone" ref="videodropzone">
             <div class="dropzone-display">
                 <div class="p-5">
-                    <img src="/cloud-computing.svg" />
-					<small>Icon by <a href="https://www.flaticon.com/authors/smartline" title="Smartline">Smartline</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
-                    <h3>Drop or click here to upload your content</h3>
-                    <p>Multiple files supported</p>
+                    <br>
+                    <h3>Drop or click here to upload your files</h3>
+                    <br>
                 </div>
             </div>
         </div>
@@ -82,6 +81,7 @@ export default {
         this.r.on('fileSuccess', (file, event) => {
             this.findFile(file).status = 'success'
 
+            delete axios.defaults.headers.common["Authorization"];
             axios({
                     url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length  ,
                     method: 'POST',
