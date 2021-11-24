@@ -3,10 +3,11 @@
         <h1>Upload files</h1>
     </div>
     <div class='container'>
+        <br>
         <label>Add description:</label>
-        <input class="form-control" type='text' ref='description'>
+        <input class="form-control" type='text' ref='description'><br>
         <label>Upload your file:</label>
-        <input class="form-control" type='file' ref='file'><br><br>
+        <input class="form-control" type='file' ref='file'>
 
 
         <uploading
