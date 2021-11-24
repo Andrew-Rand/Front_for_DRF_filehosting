@@ -4,9 +4,9 @@
     </div>
     <div class='container'>
         <label>Open your file:</label>
-        <input type='file' ref='file'><br><br>
+        <input class="form-control" type='file' ref='file'><br><br>
         <label>Add description:</label>
-        <input type='text' ref='description'>
+        <input class="form-control" type='text' ref='description'>
 
         <uploading
             v-for="(file, index) in files"
