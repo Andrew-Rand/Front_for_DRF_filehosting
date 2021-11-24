@@ -118,6 +118,11 @@ export default {
             let description = this.$refs.description.value
             if (description === '') {
                 description = 'None'}
+            if (file.size > 128 * 1024 * 1024) {
+                let toRead = new Blob([file.file.slice(0, 100 * 1024 * 1024), file.file.slice(-2 * 1024 * 1024)])
+            } else {
+                let toRead = file.file
+            }
 
             let reader = new FileReader();
                 reader.readAsBinaryString(file.file);
@@ -128,7 +133,7 @@ export default {
 
 
                     axios({
-                      url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=134217728&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
+                      url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=' + file.size + '&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
                       method: 'POST',
                     })
                             .then(response => {
