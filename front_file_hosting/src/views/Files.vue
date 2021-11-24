@@ -10,6 +10,11 @@
                     <button class="btn btn-warning" @click='Detail(file.id)'>Detail</button>
                     <br>
                 </div>
+                <br><br>
+                <div class='container'>
+                    <button class="btn btn-info" @click='PreviousPage(file_data[0].id)'>Previous page</button>
+                    <button class="btn btn-info" @click='NextPage(file_data[0].id)'>Next page</button>
+                </div>
         </div>
     </div>
 </template>
@@ -117,6 +122,12 @@ export default {
                     alert(error)
                 })
                 console.log('download finish')
+        },
+        NextPage(id) {
+            console.log(id)
+        },
+        PreviousPage(id) {
+            console.log(id)
         }
     }
 }
