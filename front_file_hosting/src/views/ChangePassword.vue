@@ -1,6 +1,6 @@
 <template>
     <div class='container'>
-        <h1>Change Password</h1>
+        <h2 class='text-center'>Change Password</h2>
         <br>
         <form @submit.prevent='submitForm'>
             <label>Password:</label>

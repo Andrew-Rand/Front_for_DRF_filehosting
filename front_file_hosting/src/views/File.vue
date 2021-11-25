@@ -1,6 +1,6 @@
 <template>
     <div class='container'>
-        <h1>File detail</h1>
+        <h2 class='text-center'>File detail</h2>
         <div class="container">
             <br>
             <h4>{{ file_data.name}}</h4><br>

@@ -1,5 +1,6 @@
 <template>
     <div class="container text-center h5">
+        <h2 class='text-center'>Welcome!</h2>
         <br>
         <p>Before using file storage, please register yourself in <a href="#/register">sign up form</a></p>
         <p>If you are already registered on the service, please login <a href="#/login">here</a> </p>

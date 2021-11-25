@@ -1,10 +1,10 @@
 <template>
-    <div class='container'>
-        <h1>Log in</h1>
+    <div class='container pad'>
+        <h2 class='text-center'>Log in</h2>
         <br>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
-            <input class="form-control" type='text' name='username' v-model = 'username'> <br>
+            <input class="form-control "  type='text' name='username' v-model = 'username'> <br>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'> <br>
             <button class="btn btn-success" type='submit'>Log in</button>
@@ -64,3 +64,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>

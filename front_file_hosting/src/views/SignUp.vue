@@ -1,6 +1,6 @@
 <template>
-    <div class='container'>
-        <h1>Register a new user</h1>
+    <div class='container pad'>
+        <h2 class='text-center'>Register a new user</h2>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
             <input class="form-control" type='username' name='username' v-model = 'username'> <br>
@@ -58,3 +58,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>

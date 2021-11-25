@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+<!--  <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/register">Sign up</router-link> |
     <router-link to="/login">log in</router-link> |
@@ -8,9 +8,9 @@
     <router-link to="/files">Files</router-link> |
     <router-link to="/upload">Upload</router-link> |
     <router-link to="/file-detail">File</router-link> |
-  </div>
+  </div> developer panel-->
 
-  <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+  <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 pt-2 mt-2 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <span class="fs-4"><i>The best storage for your files</i></span>
     </a>

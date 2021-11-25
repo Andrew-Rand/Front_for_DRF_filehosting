@@ -1,9 +1,9 @@
 <template>
-    <div class='container'>
-        <h1>About you</h1>
-        <span :src='userdata'>{{ user_data }}</span>
+    <div class='container pad'>
+        <h2 class='text-center'>About you</h2>
+        <!--<span :src='userdata'>{{ user_data }}</span>-->
     </div>
-    <div class='container'>
+    <div class='container pad'>
     <form @submit.prevent='submitForm'>
         <label>Email:</label>
         <input class="form-control" type='email' name='email' v-model = 'email'> <br>
@@ -88,3 +88,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
     <div class='container'>
-        <div class="container">
+        <div class="container text-center">
             <h3>All your files</h3>
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
                 <div class='container' v-for='file in file_data' :key='file.id'>
@@ -12,7 +12,7 @@
                 </div>
                 <br><br>
                 <div class='container'>
-                    <button class="btn btn-info" @click='PreviousPage(file_data[0].id)'>Previous page</button>
+                    <button class="btn btn-info pag-but" @click='PreviousPage(file_data[0].id)'>Previous page</button>
                     <button class="btn btn-info" @click='NextPage(file_data[0].id)'>Next page</button>
                 </div>
         </div>
@@ -167,3 +167,8 @@ export default {
     }
 }
 </script>
+<style>
+.pag-but {
+margin-right: 10vw;
+}
+</style>

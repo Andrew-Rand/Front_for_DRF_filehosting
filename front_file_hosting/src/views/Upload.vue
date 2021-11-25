@@ -1,8 +1,8 @@
 <template>
-    <div class='container'>
-        <h1>Upload files</h1>
+    <div class='container pad'>
+        <h2 class='text-center'>Upload files</h2>
     </div>
-    <div class='container'>
+    <div class='container pad'>
         <br>
         <label>Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
@@ -174,3 +174,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>
