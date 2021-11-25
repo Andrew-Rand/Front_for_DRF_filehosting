@@ -26,6 +26,7 @@ import axios from 'axios'
 import CryptoJS from 'crypto-js'
 import Resumable from './resumable.js'
 import Uploading from './UploadingHelper'
+const config = require('../config');
 
 export default {
     name: "ResumableUpload",
@@ -49,9 +50,9 @@ export default {
         },
         resumableUpload() {
         this.r = new Resumable({
-            target: 'http://127.0.0.1:1338/api/files/chunk-upload/',
+            target: config.BaseFileUrl + 'chunk-upload/',
             maxChunkRetries: 1,
-            chunkSize: 50 * 1024 * 1024,
+            chunkSize: config.ChunkSize,
             simultaneousUploads: 4,
             testChunks: true,
             throttleProgressCallbacks: 1,
@@ -65,7 +66,7 @@ export default {
         this.r.on('fileAdded', (file) => {
             try {
 
-            if (file.size > 50 * 1024 * 1024) {
+            if (file.size > config.ChunkSize) {
                 file.hasUploaded = false
                 this.files.push({
                     file,
@@ -91,7 +92,7 @@ export default {
                     formData.append('hash', md5);
                     console.log('file hash:' + md5)
 
-                    axios.post('http://127.0.0.1:1338/api/files/file-upload/', formData)
+                    axios.post(config.BaseFileUrl + 'file-upload/', formData)
                          .then(resp => {
                                 console.log(resp.data)
                          })
@@ -118,8 +119,8 @@ export default {
             let description = this.$refs.description.value
             if (description === '') {
                 description = 'None'}
-            if (file.size > 128 * 1024 * 1024) {
-                let toRead = new Blob([file.file.slice(0, 100 * 1024 * 1024), file.file.slice(-2 * 1024 * 1024)])
+            if (file.size > config.SmallFileLimit) {
+                let toRead = new Blob([file.file.slice(0, config.HashFirstSlice), file.file.slice(config.HashSecondSlice)])
             } else {
                 let toRead = file.file
             }
@@ -133,7 +134,7 @@ export default {
 
 
                     axios({
-                      url: 'http://127.0.0.1:1338/api/files/build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=' + file.size + '&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
+                      url: config.BaseFileUrl + 'build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=' + file.size + '&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
                       method: 'POST',
                     })
                             .then(response => {
