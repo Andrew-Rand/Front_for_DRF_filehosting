@@ -6,8 +6,9 @@
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
                     <h4>{{ file.name}}</h4>
-                    <button class="btn btn-outline-success btn-lg btn-block me-2" @click='Download(file.id)'>Download</button>
-                    <button class="btn btn-outline-warning" @click='Detail(file.id)'>Detail</button>
+                    <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id)'>Download</button>
+                    <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
+                    <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
                     <br>
                 </div>
                 <br><br>
@@ -163,6 +164,26 @@ export default {
                         console.log(error)
                     }
                 )
+        },
+        Delete(id) {
+            let result = confirm('Do you really want to delete your file?')
+            if (result === true) {
+            axios({
+                    url: config.BaseFileUrl + id + '/',
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    console.log(response)
+                    this.$forceUpdate();
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(error)
+                })
+            } else {
+                console.log('You save your file')
+            }
+
         }
     }
 }

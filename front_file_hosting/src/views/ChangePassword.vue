@@ -1,5 +1,5 @@
 <template>
-    <div class='container'>
+    <div class='container pad'>
         <h2 class='text-center'>Change Password</h2>
         <br>
         <form @submit.prevent='submitForm'>
@@ -47,3 +47,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>

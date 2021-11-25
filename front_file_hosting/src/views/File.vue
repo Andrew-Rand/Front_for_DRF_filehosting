@@ -1,5 +1,5 @@
 <template>
-    <div class='container'>
+    <div class='container pad'>
         <h2 class='text-center'>File detail</h2>
         <div class="container">
             <br>
@@ -10,7 +10,7 @@
             <form @submit.prevent='submitForm'>
                 <label>Description:</label>
                 <input class="form-control" type='description' name='description' v-model = 'description'>
-                <button class="btn btn-outline-warning" type='submit'>Change description</button>
+                <button class="btn btn-outline-warning text-center" type='submit'>Change description</button>
             </form>
             <br>
             <button class="btn btn-outline-success btn-lg btn-block" @click='Download'>Download</button><br>
@@ -107,7 +107,8 @@ export default {
             console.log('download finish')
         },
         Delete() {
-
+            let result = confirm('Do you really want to delete your file?')
+            if (result === true) {
             axios({
                     url: config.BaseFileUrl + localStorage.getItem('file_id')+ '/',
                     method: 'DELETE',
@@ -120,9 +121,19 @@ export default {
                     console.log(error)
                     alert(error)
                 })
+            } else {
+                console.log('You save your file')
+            }
 
         }
 
     }
 }
 </script>
+
+<style>
+.pad {
+padding-left: 8vw;
+padding-right: 8vw;
+}
+</style>
