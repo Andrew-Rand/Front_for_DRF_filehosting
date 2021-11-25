@@ -30,6 +30,7 @@ export default {
         return{
             file_data: [],
             id: '',
+            pageNumber: 1,
         }
     },
     mounted() {
@@ -39,7 +40,7 @@ export default {
         getMe() {
 
             axios({
-                    url: config.BaseFileUrl + '/',
+                    url: config.BaseFileUrl + '/?page=' + this.pageNumber,
                     method: 'GET',
                 })
                 .then(
@@ -125,9 +126,43 @@ export default {
         },
         NextPage(id) {
             console.log(id)
+            this.pageNumber++;
+            console.log(this.pageNumber)
+            axios({
+                    url: config.BaseFileUrl + '/?page=' + this.pageNumber,
+                    method: 'GET',
+                })
+                .then(
+                    response => {
+                        console.log(response)
+                        this.file_data = response.data.data.result
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
         },
         PreviousPage(id) {
             console.log(id)
+            this.pageNumber--;
+            console.log(this.pageNumber)
+            axios({
+                    url: config.BaseFileUrl + '/?page=' + this.pageNumber,
+                    method: 'GET',
+                })
+                .then(
+                    response => {
+                        console.log(response)
+                        this.file_data = response.data.data.result
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
         }
     }
 }
