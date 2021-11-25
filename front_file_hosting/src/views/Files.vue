@@ -5,7 +5,7 @@
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
-                    <h4>{{ file.name}}</h4>
+                    <h5>{{ file.name}}</h5>
                     <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id)'>Download</button>
                     <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
                     <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
