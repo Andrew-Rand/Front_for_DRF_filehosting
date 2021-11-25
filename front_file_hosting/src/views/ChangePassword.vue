@@ -9,7 +9,7 @@
             <input class="form-control" type='password' name='new_password' v-model = 'new_password'> <br>
             <label>Confirm new password:</label>
             <input class="form-control" type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br>
-            <button class="btn btn-success" type='submit'>Change Password</button>
+            <button class="btn btn-outline-success" type='submit'>Change Password</button>
         </form>
     </div>
 </template>

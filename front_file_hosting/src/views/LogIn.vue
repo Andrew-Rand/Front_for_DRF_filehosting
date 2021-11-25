@@ -7,7 +7,7 @@
             <input class="form-control "  type='text' name='username' v-model = 'username'> <br>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'> <br>
-            <button class="btn btn-success" type='submit'>Log in</button>
+            <button class="btn btn-success btn-lg" type='submit'>Log in</button>
         </form>
     </div>
 </template>

@@ -6,14 +6,14 @@
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
                     <h4>{{ file.name}}</h4>
-                    <button class="btn btn-primary btn-lg btn-block" @click='Download(file.id)'>Download</button>
-                    <button class="btn btn-warning" @click='Detail(file.id)'>Detail</button>
+                    <button class="btn btn-outline-success btn-lg btn-block me-2" @click='Download(file.id)'>Download</button>
+                    <button class="btn btn-outline-warning" @click='Detail(file.id)'>Detail</button>
                     <br>
                 </div>
                 <br><br>
                 <div class='container'>
-                    <button class="btn btn-info pag-but" @click='PreviousPage(file_data[0].id)'>Previous page</button>
-                    <button class="btn btn-info" @click='NextPage(file_data[0].id)'>Next page</button>
+                    <button class="btn btn-outline-info pag-but" @click='PreviousPage(file_data[0].id)'>Previous page</button>
+                    <button class="btn btn-outline-info" @click='NextPage(file_data[0].id)'>Next page</button>
                 </div>
         </div>
     </div>

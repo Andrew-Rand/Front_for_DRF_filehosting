@@ -1,7 +1,7 @@
 <template>
     <div class='container pad'>
         <h2 class='text-center'>About you</h2>
-        <!--<span :src='userdata'>{{ user_data }}</span>-->
+        <span hidden :src='userdata'>{{ user_data }}</span>
     </div>
     <div class='container pad'>
     <form @submit.prevent='submitForm'>

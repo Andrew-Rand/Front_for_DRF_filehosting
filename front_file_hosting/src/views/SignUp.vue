@@ -14,7 +14,7 @@
             <input class="form-control" type='age' name='age' v-model = 'age'> <br>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'><br>
-            <button class="btn btn-success" type='submit'>Create new user</button>
+            <button class="btn btn-success btn-lg" type='submit'>Create new user</button>
         </form>
     </div>
 </template>

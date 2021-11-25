@@ -10,10 +10,13 @@
             <form @submit.prevent='submitForm'>
                 <label>Description:</label>
                 <input class="form-control" type='description' name='description' v-model = 'description'>
-                <button class="btn btn-warning" type='submit'>Change description</button>
+                <button class="btn btn-outline-warning" type='submit'>Change description</button>
             </form>
             <br>
-            <button class="btn btn-primary btn-lg btn-block" @click='Download'>Download</button>
+            <button class="btn btn-outline-success btn-lg btn-block" @click='Download'>Download</button><br>
+            <br>
+            <br>
+            <button class="btn btn-outline-danger" @click='Delete'>Delete file</button>
         </div>
     </div>
 </template>
@@ -102,7 +105,24 @@ export default {
                 )
 
             console.log('download finish')
+        },
+        Delete() {
+
+            axios({
+                    url: config.BaseFileUrl + localStorage.getItem('file_id')+ '/',
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    console.log(response)
+                    this.$router.push('/files');
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(error)
+                })
+
         }
+
     }
 }
 </script>
