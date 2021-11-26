@@ -1,6 +1,6 @@
 <template>
     <div class='container pad'>
-        <h2 class='text-center'>About you</h2>
+        <h2 class='text-center wel_shad'>About you</h2>
         <span hidden :src='userdata'>{{ user_data }}</span>
     </div>
     <div class='container pad'>
@@ -93,5 +93,8 @@ export default {
 .pad {
 padding-left: 8vw;
 padding-right: 8vw;
+}
+.wel_shad{
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }
 </style>

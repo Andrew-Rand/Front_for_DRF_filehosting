@@ -2,12 +2,16 @@
     <div class='container pad'>
         <h2 class='text-center'>Upload files</h2>
     </div>
-    <div class='container pad'>
+    <div class='container pad bord'>
         <br>
-        <label>Add description:</label>
+        <label class="text-primary">Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
         <label>Upload your file:</label>
-        <input class="form-control" type='file' ref='file'>
+        <div class="input-group input-group-lg">
+            <input class="form-control blink_me" type='file' ref='file'>
+        </div>
+        <br>
+        <br>
 
 
         <uploading
@@ -139,6 +143,7 @@ export default {
                     })
                             .then(response => {
                                     console.log(response)
+                                    this.$router.push('/files')
                                 }
                             )
                         .catch(
@@ -176,8 +181,25 @@ export default {
 </script>
 
 <style>
+
 .pad {
 padding-left: 8vw;
 padding-right: 8vw;
 }
+
+.bord{
+border: 4px dashed #222;
+border-radius: 32px;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 </style>

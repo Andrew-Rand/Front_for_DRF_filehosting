@@ -12,7 +12,7 @@
 
   <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 pt-2 mt-2 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4"><i>The best storage for your files</i></span>
+        <span class="fs-4 glow"><i>The best cloud for your files</i></span>
     </a>
     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Home</a>
@@ -87,4 +87,13 @@ export default {
 
 <style lang="scss">
     @import './style/style.css';
+.glow {
+    color: #fff;
+    transition: all 300ms;
+    text-shadow: 0 0 10px #0698a5,
+                 0 0 30px #0698a5,
+                 0 0 80px #0698a5,
+                 0 0 120px #0698a5,
+                 0 0 200px #0698a5;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class='container'>
         <div class="container text-center">
-            <h3>All your files</h3>
+            <h3 class='wel_shad'>All your files</h3>
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
@@ -191,5 +191,8 @@ export default {
 <style>
 .pag-but {
 margin-right: 10vw;
+}
+.wel_shad{
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }
 </style>
