@@ -1,6 +1,6 @@
 <template>
-    <div class="container text-center h5">
-        <h2 class='text-center wel_shad'>Welcome!</h2>
+    <div class="container text-center h5 pt-5">
+        <h2 class='text-center glow'>Welcome to our cloud!</h2>
         <br>
         <p>Before using file storage, please register yourself in <a href="#/register" class='glow'>sign up form</a></p>
         <p>If you are already registered on the service, please login <a href="#/login" class='glow'>here</a> </p>
@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style>
+
 .glow {
     color: #fff;
     transition: all 300ms;
