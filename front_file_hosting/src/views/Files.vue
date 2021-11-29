@@ -6,7 +6,7 @@
                 <div class='container' v-for='file in file_data' :key='file.id'>
                     <br>
                     <h5>{{ file.name}}</h5>
-                    <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id)'>Download</button>
+                    <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id, file.name)'>Download</button>
                     <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
                     <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
                     <br>
@@ -75,7 +75,7 @@ export default {
                     alert(error)
                 })
         },
-        Download(id) {
+        Download(id, name) {
             console.log('download start')
             axios({
                     url: config.BaseFileUrl + id + '/download/',
@@ -88,7 +88,7 @@ export default {
                     var fileLink = document.createElement('a');
                     var type = response.headers['content-type']
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'file' + type);
+                    fileLink.setAttribute('download', name);
                     document.body.appendChild(fileLink);
                     fileLink.click();
                     

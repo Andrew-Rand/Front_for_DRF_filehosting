@@ -14,7 +14,7 @@
                 <button class="btn btn-outline-warning text-center" type='submit'>Change description</button>
             </form>
             <br>
-            <button class="btn btn-outline-success btn-lg btn-block" @click='Download'>Download</button><br>
+            <button class="btn btn-outline-success btn-lg btn-block" @click='Download(file_data.name)'>Download</button><br>
             <br>
             <br>
             <button class="btn btn-outline-danger" @click='Delete'>Delete file</button>
@@ -80,7 +80,7 @@ export default {
                     alert(error)
                 })
         },
-        Download() {
+        Download(name) {
             console.log('download start')
 
             axios({
@@ -94,7 +94,7 @@ export default {
                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                     var fileLink = document.createElement('a');
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'file.jpg');
+                    fileLink.setAttribute('download', name);
                     document.body.appendChild(fileLink);
                     fileLink.click();
 
