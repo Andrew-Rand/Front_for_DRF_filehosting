@@ -1,5 +1,5 @@
 <template>
-    <div class='container pad'>
+    <div class='container pad text-center'>
         <h2 class='text-center wel_shad'>File detail</h2>
         <div class="container">
             <br>
@@ -50,6 +50,7 @@ export default {
                         this.file_data = response.data
                         this.description = response.data.description
                         let string_array = this.file_data.name.split('.')
+                        console.log(localStorage.getItem('user_id'))
                         this.image = config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png'
                     }
                 )

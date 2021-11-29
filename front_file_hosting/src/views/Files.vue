@@ -3,9 +3,10 @@
         <div class="container text-center">
             <h3 class='wel_shad'>All your files</h3>
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
-                <div class='container' v-for='file in file_data' :key='file.id'>
+                <div class='container' v-for='(file, index) in file_data' :key='file.id'>
                     <br>
                     <h5>{{ file.name}}</h5>
+                    <img class='me-3' :src="image[index]" />
                     <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id, file.name)'>Download</button>
                     <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
                     <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
@@ -48,6 +49,19 @@ export default {
                     response => {
                         console.log(response)
                         this.file_data = response.data.data.result
+
+                        let tumb_array = []
+                        let arrayLength = this.file_data.length;
+                        for (var i = 0; i < arrayLength; i++) {
+                            let file_name = this.file_data[i].name
+                            let string_array = file_name.split('.')
+                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            console.log(tumb_array)
+                            //Do something
+                        }
+
+                        this.image = tumb_array
+
                     }
                 )
                 .catch(
