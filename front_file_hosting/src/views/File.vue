@@ -1,6 +1,5 @@
 <template>
     <div class='container pad text-center'>
-        <h2 class='text-center wel_shad'>File detail</h2>
         <div class="container">
             <br>
             <h4>{{ file_data.name }}</h4><br>
