@@ -5,6 +5,7 @@ export default createStore({
     access: '',
     refresh: '',
     file_id: '',
+    user_id: '',
   },
   mutations: {
     initializeStore(state) {
@@ -12,10 +13,12 @@ export default createStore({
             state.access = localStorage.getItem('access')
             state.refresh = localStorage.getItem('refresh')
             state.file_id = localStorage.getItem('file_id')
+            state.user_id = localStorage.getItem('user_id')
         } else {
             state.access = ''
             state.refresh = ''
             state.file_id = ''
+            state.user_id = ''
         }
     },
     setAccess(state, access) {
@@ -26,6 +29,9 @@ export default createStore({
     },
     setFileId(state, file_id) {
         state.file_id = file_id
+    },
+    setUserId(state, user_id) {
+        state.user_id = user_id
     }
   },
   actions: {

@@ -1,11 +1,12 @@
 <template>
     <div class="container text-center h5">
+        <br>
         <h2 class='text-center wel_shad'>Welcome!</h2>
         <br>
         <p>Before using file storage, please register yourself in <a href="#/register" class='glow'>sign up form</a></p>
         <p>If you are already registered on the service, please login <a href="#/login" class='glow'>here</a> </p>
         <p>After login you can use service for <a href="#/upload" class='glow'>upload</a> and <a href="#/files" class='glow'>store</a> for your files, wherever you are, whatever you do</p><br>
-        <p class="h4 wel_shad">Thank you very much indeed for using our service. We are working for your benefit!</p>
+        <p class="h5 wel_shad">Thank you very much indeed for using our service. We are working for your benefit!</p>
     </div>
 </template>
 

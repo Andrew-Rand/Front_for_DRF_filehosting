@@ -46,6 +46,10 @@ export default {
                         this.email = response.data.email
                         this.first_name = response.data.first_name
                         this.last_name = response.data.last_name
+
+                        localStorage.setItem('user_id', response.data.id)
+                        this.$store.commit('setUserId', response.data.id)
+
                     }
                 )
                 .catch(

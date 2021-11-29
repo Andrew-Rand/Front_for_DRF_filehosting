@@ -3,7 +3,8 @@
         <h2 class='text-center wel_shad'>File detail</h2>
         <div class="container">
             <br>
-            <h4>{{ file_data.name}}</h4><br>
+            <h4>{{ file_data.name }}</h4><br>
+            <img :src="image" />
             <p>Type: {{ file_data.type }}</p>
             <p>Data created: {{ file_data.date_created }}</p>
             <p>Data modified: {{ file_data.date_modified }}</p>
@@ -48,6 +49,8 @@ export default {
                         console.log(response)
                         this.file_data = response.data
                         this.description = response.data.description
+                        let string_array = this.file_data.name.split('.')
+                        this.image = config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png'
                     }
                 )
                 .catch(
