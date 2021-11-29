@@ -6,7 +6,7 @@
                 <div class='container' v-for='(file, index) in file_data' :key='file.id'>
                     <br>
                     <h5>{{ file.name}}</h5>
-                    <img class='me-3' :src="image[index]" />
+                    <img width="100" height="100" class='me-3' :src="image[index]" />
                     <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id, file.name)'>Download</button>
                     <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
                     <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
