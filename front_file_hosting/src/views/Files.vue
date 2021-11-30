@@ -151,6 +151,18 @@ export default {
                     response => {
                         console.log(response)
                         this.file_data = response.data.data.result
+
+                        let tumb_array = []
+                        let arrayLength = this.file_data.length;
+                        for (var i = 0; i < arrayLength; i++) {
+                            let file_name = this.file_data[i].name
+                            let string_array = file_name.split('.')
+                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            console.log(tumb_array)
+                            //Do something
+                        }
+
+                        this.image = tumb_array
                     }
                 )
                 .catch(
@@ -171,6 +183,19 @@ export default {
                     response => {
                         console.log(response)
                         this.file_data = response.data.data.result
+
+                        let tumb_array = []
+                        let arrayLength = this.file_data.length;
+                        for (var i = 0; i < arrayLength; i++) {
+                            let file_name = this.file_data[i].name
+                            let string_array = file_name.split('.')
+                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            console.log(tumb_array)
+                            //Do something
+                        }
+
+                        this.image = tumb_array
+
                     }
                 )
                 .catch(
