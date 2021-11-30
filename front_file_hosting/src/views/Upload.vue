@@ -87,7 +87,7 @@ export default {
                 formData.append('filename', file.fileName)
                 formData.append('description', this.$refs.description.value)
 
-                delete axios.defaults.headers.common['Authorization'];
+
                 let reader = new FileReader();
                 reader.readAsBinaryString(file.file);
                 reader.onload = function () {
@@ -119,7 +119,7 @@ export default {
 
         this.r.on('fileSuccess', (file) => {
             this.findFile(file).status = 'success'
-            delete axios.defaults.headers.common['Authorization'];
+
             let description = this.$refs.description.value
             if (description === '') {
                 description = 'None'}
@@ -165,12 +165,6 @@ export default {
             if (progress > localFile.progress)
                 localFile.progress = progress
         })
-        XMLHttpRequest.prototype.open = (function (open) {
-            return function () {
-                open.apply(this, arguments);
-                this.setRequestHeader('Authorization', localStorage.getItem('access'));
-            };
-        })(XMLHttpRequest.prototype.open);
         }
     },
     mounted() {
