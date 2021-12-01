@@ -1,5 +1,5 @@
 <template>
-<!--  <div id="nav">
+<!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/register">Sign up</router-link> |
     <router-link to="/login">log in</router-link> |
@@ -8,33 +8,9 @@
     <router-link to="/files">Files</router-link> |
     <router-link to="/upload">Upload</router-link> |
     <router-link to="/file-detail">File</router-link> |
-  </div> developer panel-->
-
-  <div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 pt-2 mt-2 border-bottom">
-    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4 glow"><i>The best cloud for your files</i></span>
-    </a>
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-
-    <div v-if="is_log">
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Sign Up</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/logout">Log out</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
-            <a class="btn btn-primary" href="#/upload">Upload File</a>
-    </div>
-
-    <div v-else>
+  </div> -->
 
 
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Sign Up</a>
-            <a class="btn btn-primary" href="#/login">Login</a>
-
-    </div>
-        </nav>
-
-  </div>
 
   <router-view/>
 

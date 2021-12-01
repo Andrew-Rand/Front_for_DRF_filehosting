@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='padd container text-center'>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
@@ -20,9 +23,13 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 export default {
     name: 'SignUp',
+        components: {
+        Nav
+    },
     data() {
         return {
             'first_name': '',

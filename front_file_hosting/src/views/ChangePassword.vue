@@ -1,6 +1,8 @@
 <template>
+
+    <Nav/>
+
     <div class='container padd text-center'>
-        <h2 class='text-center wel_shad'>Change Password</h2>
         <br>
         <form @submit.prevent='submitForm'>
             <label>Password:</label>
@@ -16,9 +18,13 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 export default {
     name: 'ChangePassword',
+        components: {
+        Nav
+    },
     data() {
         return {
             'password': '',

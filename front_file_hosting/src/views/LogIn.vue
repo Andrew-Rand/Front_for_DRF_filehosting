@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='container padd text-center'>
         <h2 class='text-center wel_shad'>Log in</h2>
         <br>
@@ -14,9 +17,13 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 export default {
     name: 'LogIn',
+    components: {
+        Nav
+    },
     data() {
         return{
             username: '',

@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='container pad text-center'>
         <h2 class='text-center wel_shad'>About {{ user_data.username }}</h2>
         <span hidden :src='userdata'>{{ user_data }}</span>
@@ -22,9 +25,13 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 export default {
     name: 'User',
+        components: {
+        Nav
+    },
     data() {
         return{
             user_data: ''

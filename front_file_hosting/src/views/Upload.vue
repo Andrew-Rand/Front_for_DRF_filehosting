@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='container pad'>
         <h2 class='text-center'>Upload files</h2>
     </div>
@@ -27,15 +30,18 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 import CryptoJS from 'crypto-js'
 import Resumable from './resumable.js'
 import Uploading from './UploadingHelper'
 const config = require('../config');
 
+
 export default {
     name: "ResumableUpload",
     components: {
-        Uploading
+        Uploading,
+        Nav,
     },
     data() {
         return {

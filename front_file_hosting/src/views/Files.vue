@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='container'>
         <div class="container text-center">
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
@@ -22,11 +25,15 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 const config = require('../config');
 
 export default {
     name: 'Files',
+        components: {
+        Nav
+    },
     data() {
         return{
             file_data: [],

@@ -1,4 +1,7 @@
 <template>
+
+    <Nav/>
+
     <div class='container pad text-center'>
         <div class="container">
             <br>
@@ -23,11 +26,15 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 const config = require('../config');
 
 export default {
     name: 'Files',
+        components: {
+        Nav
+    },
     data() {
         return{
             file_data: []
