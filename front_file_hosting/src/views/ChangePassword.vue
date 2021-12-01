@@ -1,5 +1,5 @@
 <template>
-    <div class='container pad'>
+    <div class='container padd text-center'>
         <h2 class='text-center wel_shad'>Change Password</h2>
         <br>
         <form @submit.prevent='submitForm'>
@@ -9,7 +9,7 @@
             <input class="form-control" type='password' name='new_password' v-model = 'new_password'> <br>
             <label>Confirm new password:</label>
             <input class="form-control" type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br>
-            <button class="btn btn-outline-success" type='submit'>Change Password</button>
+            <button class="btn btn-outline-primary btn-lg" type='submit'>Change Password</button>
         </form>
     </div>
 </template>
@@ -49,9 +49,9 @@ export default {
 </script>
 
 <style>
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
+.padd {
+padding-left: 25vw;
+padding-right: 25vw;
 }
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)

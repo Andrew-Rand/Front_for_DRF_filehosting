@@ -1,9 +1,9 @@
 <template>
-    <div class='container pad'>
+    <div class='container pad text-center'>
         <h2 class='text-center wel_shad'>About {{ user_data.username }}</h2>
         <span hidden :src='userdata'>{{ user_data }}</span>
     </div>
-    <div class='container pad'>
+    <div class='container pad text-center'>
     <form @submit.prevent='submitForm'>
         <label>Email:</label>
         <input class="form-control" type='email' name='email' v-model = 'email'> <br>
@@ -13,10 +13,10 @@
         <input class="form-control" type='last_name' name='last_name' v-model = 'last_name'> <br>
         <label>Age:</label>
         <input class="form-control" type='age' name='age' v-model = 'age'> <br>
-        <button class="btn btn-success" type='submit'>Change user data</button>
+        <button class="btn btn-outline-primary me-3" type='submit'>Update profile</button>
+        <button class="btn btn-outline-primary" @click='navigateHtml'>Change password</button>
     </form>
-    <br>
-    <button class="btn btn-warning" @click='navigateHtml'>Change password</button>
+
     </div>
 </template>
 
@@ -94,10 +94,7 @@ export default {
 </script>
 
 <style>
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
-}
+
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }

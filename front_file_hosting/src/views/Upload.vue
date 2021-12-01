@@ -2,7 +2,7 @@
     <div class='container pad'>
         <h2 class='text-center'>Upload files</h2>
     </div>
-    <div class='container pad bord'>
+    <div class='container pad'>
         <br>
         <label class="text-primary">Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
@@ -176,15 +176,6 @@ export default {
 
 <style>
 
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
-}
-
-.bord{
-border: 4px dashed #222;
-border-radius: 32px;
-}
 
 .blink_me {
   animation: blinker 1s linear infinite;

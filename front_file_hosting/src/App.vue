@@ -15,9 +15,9 @@
         <span class="fs-4 glow"><i>The best cloud for your files</i></span>
     </a>
     <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Home</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#/register">Sign Up</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Sign Up</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
+        <a class="py-2 me-4 text-dark text-decoration-none" href="#/upload">LogOut</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
         <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
         <a class="btn btn-primary" href="#/upload">Upload File</a>
@@ -98,4 +98,10 @@ export default {
                  0 0 120px #0698a5,
                  0 0 200px #0698a5;
 }
+
+.pad {
+padding-left: 30vw;
+padding-right: 30vw;
+}
+
 </style>

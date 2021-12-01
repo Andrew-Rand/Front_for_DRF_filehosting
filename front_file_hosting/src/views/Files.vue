@@ -1,7 +1,6 @@
 <template>
     <div class='container'>
         <div class="container text-center">
-            <h3 class='wel_shad'>All your files</h3>
                 <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
                 <div class='container' v-for='(file, index) in file_data' :key='file.id'>
                     <br>
@@ -55,7 +54,7 @@ export default {
                         for (var i = 0; i < arrayLength; i++) {
                             let file_name = this.file_data[i].name
                             let string_array = file_name.split('.')
-                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            tumb_array.push(config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
                             console.log(tumb_array)
                             //Do something
                         }

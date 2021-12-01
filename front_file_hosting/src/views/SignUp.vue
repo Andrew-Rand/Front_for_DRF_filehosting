@@ -1,20 +1,19 @@
 <template>
-    <div class='container pad'>
-        <h2 class='text-center wel_shad'>Register a new user</h2>
+    <div class='padd container text-center'>
         <form @submit.prevent='submitForm'>
             <label>Username:</label>
-            <input class="form-control" type='username' name='username' v-model = 'username'> <br>
+            <input class="form-control" type='username' name='username' v-model = 'username' placeholder='Username'> <br>
             <label>Email:</label>
-            <input class="form-control" type='email' name='email' v-model = 'email'> <br>
+            <input class="form-control" type='email' name='email' v-model = 'email' placeholder='example@gmail.com'> <br>
             <label>First Name:</label>
-            <input class="form-control" type='first_name' name='first_name' v-model = 'first_name'> <br>
+            <input class="form-control" type='first_name' name='first_name' v-model = 'first_name' placeholder='Name'> <br>
             <label>Last name:</label>
-            <input class="form-control" type='last_name' name='last_name' v-model = 'last_name'> <br>
+            <input class="form-control" type='last_name' name='last_name' v-model = 'last_name' placeholder='Lastname'> <br>
             <label>Age:</label>
-            <input class="form-control" type='age' name='age' v-model = 'age'> <br>
+            <input class="form-control" type='age' name='age' v-model = 'age' placeholder='You must me more then 5 year old'> <br>
             <label>Password:</label>
-            <input class="form-control" type='password' name='password' v-model = 'password'><br>
-            <button class="btn btn-success btn-lg" type='submit'>Create new user</button>
+            <input class="form-control" type='password' name='password' v-model = 'password' placeholder= 'Password must contains number, lowercase, uppercase and spec char'><br>
+            <button class="btn btn-outline-primary btn-lg" type='submit'>Sign up</button>
         </form>
     </div>
 </template>
@@ -60,10 +59,12 @@ export default {
 </script>
 
 <style>
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
+
+.padd {
+padding-left: 30vw;
+padding-right: 30vw;
 }
+
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }

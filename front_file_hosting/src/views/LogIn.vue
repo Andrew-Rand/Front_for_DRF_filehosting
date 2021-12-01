@@ -1,5 +1,5 @@
 <template>
-    <div class='container pad'>
+    <div class='container padd text-center'>
         <h2 class='text-center wel_shad'>Log in</h2>
         <br>
         <form @submit.prevent='submitForm'>
@@ -7,7 +7,7 @@
             <input class="form-control "  type='text' name='username' v-model = 'username'> <br>
             <label>Password:</label>
             <input class="form-control" type='password' name='password' v-model = 'password'> <br>
-            <button class="btn btn-success btn-lg" type='submit'>Log in</button>
+            <button class="btn btn-outline-primary btn-lg" type='submit'>Log in</button>
         </form>
     </div>
 </template>
@@ -53,7 +53,7 @@ export default {
 
                     axios.defaults.headers.common['Authorization'] = access
 
-                    this.$router.push('/user')
+                    this.$router.push('/files')
 
                 })
                 .catch(error => {
@@ -66,10 +66,12 @@ export default {
 </script>
 
 <style>
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
+
+.padd {
+padding-left: 30vw;
+padding-right: 30vw;
 }
+
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }
