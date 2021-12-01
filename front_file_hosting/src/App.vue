@@ -14,30 +14,25 @@
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
         <span class="fs-4 glow"><i>The best cloud for your files</i></span>
     </a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 
-    {% if localStorage.getItem('is_login') %}
-
-        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+    <div v-if="is_log">
             <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Sign Up</a>
             <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
             <a class="py-2 me-4 text-dark text-decoration-none" href="#/logout">Log out</a>
             <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
             <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
             <a class="btn btn-primary" href="#/upload">Upload File</a>
-        </nav>
+    </div>
 
-    {% else %}
+    <div v-else>
 
-        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+
             <a class="me-3 py-2 text-dark text-decoration-none" href="#/">Sign Up</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/login">Login</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/logout">Log out</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/user">Profile</a>
-            <a class="py-2 me-4 text-dark text-decoration-none" href="#/files">Files</a>
+            <a class="btn btn-primary" href="#/login">Login</a>
+
+    </div>
         </nav>
-
-    {% endif %}
-
 
   </div>
 
@@ -50,6 +45,11 @@ import axios from 'axios'
 
 export default {
     name: 'App',
+    data() {
+        return{
+            is_log: false
+        }
+    },
     beforeCreate() {
         this.$store.commit('initializeStore')
 
@@ -60,13 +60,22 @@ export default {
         } else {
             axios.defaults.headers.common['Authorization'] = ''
         }
+
     },
     mounted() {
         setInterval(() => {
-            this.getAccess()
+            this.getAccess(),
+            this.getMe()
         }, 100000)
+        this.getMe()
+        console.log(this.is_log)
+        console.log(localStorage.getItem('access'))
+
     },
     methods: {
+        getMe() {
+            this.is_log = localStorage.getItem('is_login')
+        },
         getAccess(){
             const accessData = {
                 refresh: this.$store.state.refresh
@@ -96,7 +105,7 @@ export default {
             .catch(error => {
                 console.log(error)
             })
-        }
+        },
     }
 }
 

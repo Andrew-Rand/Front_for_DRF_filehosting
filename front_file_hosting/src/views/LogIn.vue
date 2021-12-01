@@ -20,7 +20,8 @@ export default {
     data() {
         return{
             username: '',
-            password: ''
+            password: '',
+            is_log: true
         }
     },
     methods:{
@@ -59,6 +60,7 @@ export default {
                     axios.defaults.headers.common['Authorization'] = access
 
                     this.$router.push('/files')
+                    this.is_log = true
 
                 })
                 .catch(error => {

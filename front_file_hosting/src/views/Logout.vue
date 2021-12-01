@@ -8,6 +8,11 @@ import axios from 'axios'
 
 export default {
     name: 'Logout',
+    data() {
+        return{
+            is_log: false
+        }
+    },
     mounted() {
         this.getMe()
     },
@@ -18,9 +23,9 @@ export default {
             const refresh = ''
             const is_login = false
 
-            localStorage.setItem('access', access)
-            localStorage.setItem('refresh', refresh)
-            localStorage.setItem('is_login', is_login)
+            localStorage.removeItem('access', access)
+            localStorage.removeItem('refresh', refresh)
+            localStorage.removeItem('is_login', is_login)
 
             this.$store.commit('setAccess', access)
             this.$store.commit('setRefresh', refresh)
@@ -29,6 +34,8 @@ export default {
             console.log(localStorage.getItem('is_login'))
 
             axios.defaults.headers.common['Authorization'] = access
+
+
             this.$router.push('/login')
         }
 
