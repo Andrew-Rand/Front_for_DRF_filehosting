@@ -14,11 +14,13 @@ export default createStore({
             state.refresh = localStorage.getItem('refresh')
             state.file_id = localStorage.getItem('file_id')
             state.user_id = localStorage.getItem('user_id')
+            state.is_login = localStorage.getItem('is_login')
         } else {
             state.access = ''
             state.refresh = ''
             state.file_id = ''
             state.user_id = ''
+            state.is_login = false
         }
     },
     setAccess(state, access) {
@@ -32,6 +34,9 @@ export default createStore({
     },
     setUserId(state, user_id) {
         state.user_id = user_id
+    },
+    setIsLogin(state, is_login){
+        state.is_login = is_login
     }
   },
   actions: {

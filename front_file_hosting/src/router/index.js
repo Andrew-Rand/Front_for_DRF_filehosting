@@ -6,6 +6,7 @@ import User from '../views/User.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Upload from '../views/Upload.vue'
 import File from '../views/File.vue'
+import Logout from '../views/Logout.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/file-detail',
     name: 'File',
     component: File
+  },
+    {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   }
 ]
 
