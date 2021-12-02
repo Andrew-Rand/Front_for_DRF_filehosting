@@ -52,17 +52,13 @@ export default {
 
                     const access = response.data.data.result.access_token
                     const refresh = response.data.data.result.refresh_token
-                    const is_login = true
 
                     localStorage.setItem('access', access)
                     localStorage.setItem('refresh', refresh)
-                    localStorage.setItem('is_login', is_login)
 
                     this.$store.commit('setAccess', access)
                     this.$store.commit('setRefresh', refresh)
-                    this.$store.commit('setIsLogin', is_login)
 
-                    console.log(localStorage.getItem('is_login'))
 
                     axios.defaults.headers.common['Authorization'] = access
 
