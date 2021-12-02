@@ -6,7 +6,7 @@
         <small v-if="status == 'success'">  done!</small>
         <small v-else-if="status == 'retrying'">  fault, retrying...</small>
         <small v-else-if="status == 'error'">  error! cannot upload file</small>
-        <small v-else-if="status == 'canceled'">  cancelled</small>
+        <small v-else-if="status == 'canceled'"> cancelled</small>
         <small v-else>uploading {{ uploadedAmount }}%</small>
 
         <span v-if="isUploading">

@@ -10,7 +10,7 @@
         <label class="text-primary">Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
         <label>Upload your file:</label>
-        <div v-if="show" class="input-group input-group-lg">
+        <div  class="input-group input-group-lg">
             <input class="form-control blink_me" type='file' ref='file'>
         </div>
         <br><br>
@@ -157,7 +157,7 @@ export default {
                     })
                             .then(response => {
                             this.show = true
-                            alert('File has built. Please update page!')
+                            //alert('File has built. Please update page!')
                                     console.log(response)
                                 }
                             )
