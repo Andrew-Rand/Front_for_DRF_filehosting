@@ -57,7 +57,7 @@ export default {
                         this.description = response.data.description
                         let string_array = this.file_data.name.split('.')
                         console.log(localStorage.getItem('user_id'))
-                        this.image = config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png'
+                        this.image = config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png'
                     }
                 )
                 .catch(

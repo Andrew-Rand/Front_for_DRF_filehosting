@@ -3,22 +3,35 @@
     <Nav/>
 
     <div class='container'>
-        <div class="container text-center">
-                <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
-                <div class='container' v-for='(file, index) in file_data' :key='file.id'>
-                    <br>
-                    <h5>{{ file.name}}</h5>
-                    <img width="75" height="75" class='me-3' :src="image[index]" />
-                    <button class="btn btn-outline-success btn-lg btn-block me-3" @click='Download(file.id, file.name)'>Download</button>
-                    <button class="btn btn-outline-warning me-3" @click='Detail(file.id)'>Detail</button>
-                    <button class="btn btn-outline-danger" @click='Delete(file.id)'>Delete</button>
-                    <br>
+        <div class="container text-center p-2">
+            <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
+                <br><br><br>
+            <div class='container' v-for='(file, index) in file_data' :key='file.id'>
+
+
+                <div class="row border align-middle">
+                    <div class="col-auto border">
+                        <img width="75" height="75" class='me-3' :src="image[index]" @click='Detail(file.id)'/>
+                    </div>
+                    <div class="col-md border">
+                        <p>{{ file.name}}</p>
+                    </div>
+                    <div class="col-auto border">
+                        <img width="50" height="50" src="../assets/about.png" @click='Detail(file.id)' alt="detail"/>
+                    </div>
+                    <div class="col-auto border">
+                        <img width="50" height="50" src="../assets/download.png" @click='Download(file.id, file.name)' alt="download" />
+                    </div>
+                    <div class="col-auto border">
+                        <img width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
+                    </div>
                 </div>
-                <br><br>
-                <div class='container'>
-                    <button class="btn btn-outline-info pag-but" @click='PreviousPage(file_data[0].id)'>Previous page</button>
-                    <button class="btn btn-outline-info" @click='NextPage(file_data[0].id)'>Next page</button>
-                </div>
+            </div>
+            <br><br>
+            <div class='container'>
+                <button class="btn btn-outline-info pag-but" @click='PreviousPage(file_data[0].id)'>Previous page</button>
+                <button class="btn btn-outline-info" @click='NextPage(file_data[0].id)'>Next page</button>
+            </div>
         </div>
     </div>
 </template>
@@ -163,7 +176,7 @@ export default {
                         for (var i = 0; i < arrayLength; i++) {
                             let file_name = this.file_data[i].name
                             let string_array = file_name.split('.')
-                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            tumb_array.push(config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
                             console.log(tumb_array)
                             //Do something
                         }
@@ -174,6 +187,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        this.pageNumber--
                     }
                 )
         },
@@ -195,7 +209,7 @@ export default {
                         for (var i = 0; i < arrayLength; i++) {
                             let file_name = this.file_data[i].name
                             let string_array = file_name.split('.')
-                            tumb_array.push(config.FileStorageUrl + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            tumb_array.push(config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
                             console.log(tumb_array)
                             //Do something
                         }
@@ -207,6 +221,7 @@ export default {
                 .catch(
                     error => {
                         console.log(error)
+                        this.pageNumber++
                     }
                 )
         },
