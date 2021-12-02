@@ -9,21 +9,21 @@
             <div class='container' v-for='(file, index) in file_data' :key='file.id'>
 
 
-                <div class="row border align-middle">
+                <div class="row border">
                     <div class="col-auto border">
-                        <img width="75" height="75" class='me-3' :src="image[index]" @click='Detail(file.id)'/>
+                        <img style="cursor:pointer" width="75" height="75" class='me-3' :src="image[index]" @click='Detail(file.id)'/>
                     </div>
                     <div class="col-md border">
-                        <p>{{ file.name}}</p>
+                        <p style="margin:0">{{ file.name}}</p>
                     </div>
                     <div class="col-auto border">
-                        <img width="50" height="50" src="../assets/about.png" @click='Detail(file.id)' alt="detail"/>
+                        <img style="cursor:pointer" width="50" height="50" src="../assets/about.png" @click='Detail(file.id)' alt="detail"/>
                     </div>
                     <div class="col-auto border">
-                        <img width="50" height="50" src="../assets/download.png" @click='Download(file.id, file.name)' alt="download" />
+                        <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download(file.id, file.name)' alt="download" />
                     </div>
                     <div class="col-auto border">
-                        <img width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
+                        <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@ export default {
                     console.log(response)
                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                     var fileLink = document.createElement('a');
-                    var type = response.headers['content-type']
+
                     fileLink.href = fileURL;
                     fileLink.setAttribute('download', name);
                     document.body.appendChild(fileLink);
@@ -255,4 +255,17 @@ margin-right: 10vw;
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }
+
+.col-md {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.col-auto {
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
 </style>

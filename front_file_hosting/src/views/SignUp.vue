@@ -3,19 +3,81 @@
     <Nav/>
 
     <div class='padd container text-center'>
-        <form @submit.prevent='submitForm'>
-            <label>Username:</label>
-            <input class="form-control" type='username' name='username' v-model = 'username' placeholder='Username'> <br>
-            <label>Email:</label>
-            <input class="form-control" type='email' name='email' v-model = 'email' placeholder='example@gmail.com'> <br>
-            <label>First Name:</label>
-            <input class="form-control" type='first_name' name='first_name' v-model = 'first_name' placeholder='Name'> <br>
-            <label>Last name:</label>
-            <input class="form-control" type='last_name' name='last_name' v-model = 'last_name' placeholder='Lastname'> <br>
-            <label>Age:</label>
-            <input class="form-control" type='age' name='age' v-model = 'age' placeholder='You must me more then 5 year old'> <br>
-            <label>Password:</label>
-            <input class="form-control" type='password' name='password' v-model = 'password' placeholder= 'Password must contains number, lowercase, uppercase and spec char'><br>
+        <form class='needs-validation' @submit.prevent='submitForm' novalidate>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
+                    <div class="invalid-feedback">
+                        Please, select user.
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
+                    <div class="invalid-feedback">
+                        Please, use valid email.
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Name</label>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'first_name' placeholder='Name' required>
+                    <div class="invalid-feedback">
+                        First name must contain at least 1 letter
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Last name</label>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'last_name' placeholder='Lastname' required>
+                    <div class="invalid-feedback">
+                        First name must contain at least 1 letter
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Age</label>
+                <div class="input-group has-validation">
+                    <input type="age" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='You must me more then 5 year old' required>
+                    <div class="invalid-feedback">
+                        Select your age from 5 to 100 years
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Password</label>
+                <div class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password must contains number, lowercase, uppercase and spec char' required>
+                    <div class="invalid-feedback">
+                        Please check your password. Must contains number, lowercase, uppercase and spec char
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
             <button class="btn btn-outline-primary btn-lg" type='submit'>Sign up</button>
         </form>
     </div>
@@ -40,6 +102,9 @@ export default {
             'age': '',
         }
     },
+        mounted() {
+        this.function()
+    },
     methods: {
         submitForm(){
             const formData = {
@@ -57,10 +122,29 @@ export default {
                     this.$router.push('/login')
                 })
                 .catch(error => {
-                    alert(error)
+                  //  alert(error)
                     console.log(error)
                 })
-        }
+        },
+        function () {
+            'use strict'
+
+          // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+          var forms = document.querySelectorAll('.needs-validation')
+
+        // Зацикливайтесь на них и предотвращайте отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                 event.stopPropagation()
+             }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+    }
     }
 }
 </script>
