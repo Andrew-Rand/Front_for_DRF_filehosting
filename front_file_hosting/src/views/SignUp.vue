@@ -57,7 +57,7 @@
             <div>
                 <label for="validationCustomUsername" class="form-label">Age</label>
                 <div class="input-group has-validation">
-                    <input type="age" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='You must me more then 5 year old' required>
+                    <input type="age" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
                     <div class="invalid-feedback">
                         Select your age from 5 to 100 years
                     </div>
