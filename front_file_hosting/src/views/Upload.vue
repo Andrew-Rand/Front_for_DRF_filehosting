@@ -125,22 +125,27 @@ export default {
 
         this.r.on('fileSuccess', (file) => {
             this.findFile(file).status = 'success'
-
             let description = this.$refs.description.value
+
+            let toRead;
+
             if (description === '') {
                 description = 'None'}
             if (file.size > config.SmallFileLimit) {
-                let toRead = new Blob([file.file.slice(0, config.HashFirstSlice), file.file.slice(config.HashSecondSlice)])
+                toRead = new Blob([file.file.slice(0, config.HashFirstSlice), file.file.slice(config.HashSecondSlice)])
+                console.log('All right')
             } else {
-                let toRead = file.file
+                toRead = file.file
             }
 
+
+
             let reader = new FileReader();
-                reader.readAsBinaryString(file.file);
-                reader.onload = function () {
-                    let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
-                    let md5 = hash.toString();
-                    console.log('file hash:' + md5)
+            reader.readAsBinaryString(toRead);
+            reader.onload = function () {
+                 let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
+                 let md5 = hash.toString();
+                 console.log('file hash:' + md5)
 
 
                     axios({
