@@ -4,7 +4,8 @@
 
     <div class='container'>
         <div class="container text-center p-2">
-            <button class="btn btn-success" @click='DownloadAll'>Download ALL</button>
+            <button class="btn btn-outline-primary btn-lg me-5" @click='DownloadAll'>Download ALL</button>
+            <button class="btn btn-primary btn-lg" @click='toUpload'>Upload new file</button>
                 <br><br><br>
             <div class='container' v-for='(file, index) in file_data' :key='file.id'>
 
@@ -244,6 +245,9 @@ export default {
                 console.log('You save your file')
             }
 
+        },
+        toUpload() {
+            window.location.href = '#/upload'
         }
     }
 }
