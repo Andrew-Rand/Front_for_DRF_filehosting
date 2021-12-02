@@ -10,11 +10,10 @@
         <label class="text-primary">Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
         <label>Upload your file:</label>
-        <div class="input-group input-group-lg">
+        <div v-if="show" class="input-group input-group-lg">
             <input class="form-control blink_me" type='file' ref='file'>
         </div>
-        <br>
-        <br>
+        <br><br>
 
 
         <uploading
@@ -41,10 +40,11 @@ export default {
     name: "ResumableUpload",
     components: {
         Uploading,
-        Nav,
+        Nav
     },
     data() {
         return {
+            show: true,
             files: [],
             r: false,
             description: ''
@@ -74,6 +74,9 @@ export default {
         this.r.assignBrowse(this.$refs.file);
         this.r.assignDrop(this.$refs.file);
         this.r.on('fileAdded', (file) => {
+
+            this.show = false
+
             try {
 
             if (file.size > config.ChunkSize) {
@@ -104,6 +107,7 @@ export default {
 
                     axios.post(config.BaseFileUrl + 'file-upload/', formData)
                          .then(resp => {
+                                this.show = true
                                 console.log(resp.data)
                          })
                          .catch(e => {
@@ -147,12 +151,13 @@ export default {
                  let md5 = hash.toString();
                  console.log('file hash:' + md5)
 
-
                     axios({
                       url: config.BaseFileUrl + 'build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=' + file.size + '&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
                       method: 'POST',
                     })
                             .then(response => {
+                            this.show = true
+                            alert('File has built. Please update page!')
                                     console.log(response)
                                 }
                             )
