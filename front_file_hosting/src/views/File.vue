@@ -8,8 +8,8 @@
             <h4>{{ file_data.name }}</h4><br>
             <img :src="image" />
             <p>Type: {{ file_data.type }}</p>
-            <p>Data created: {{ file_data.date_created }}</p>
-            <p>Data modified: {{ file_data.date_modified }}</p>
+            <p>Date created: {{ file_data.date_created }}</p>
+            <p>Date modified: {{ file_data.date_modified }}</p>
             <form @submit.prevent='submitForm'>
                 <label>Description:</label>
                 <input class="form-control" type='description' name='description' v-model = 'description'>

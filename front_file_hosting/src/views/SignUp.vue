@@ -102,8 +102,8 @@ export default {
             'age': '',
         }
     },
-        mounted() {
-        this.function()
+    mounted() {
+        this.validateForm()
     },
     methods: {
         submitForm(){
@@ -126,13 +126,13 @@ export default {
                     console.log(error)
                 })
         },
-        function () {
+        validateForm () {
             'use strict'
 
-          // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+          // take all forms
           var forms = document.querySelectorAll('.needs-validation')
 
-        // Зацикливайтесь на них и предотвращайте отправку
+        // cycle to forms
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
             form.addEventListener('submit', function (event) {

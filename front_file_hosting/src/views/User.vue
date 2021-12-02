@@ -6,7 +6,8 @@
         <h2 class='text-center wel_shad'>About {{ user_data.username }}</h2>
         <span hidden :src='userdata'>{{ user_data }}</span>
     </div>
-    <div class='container pad text-center'>
+    <br><br>
+    <div class='container padd text-center'>
     <form @submit.prevent='submitForm'>
         <label>Email:</label>
         <input class="form-control" type='email' name='email' v-model = 'email'> <br>
@@ -101,6 +102,11 @@ export default {
 </script>
 
 <style>
+
+.padd {
+padding-left: 30vw;
+padding-right: 30vw;
+}
 
 .wel_shad{
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3)

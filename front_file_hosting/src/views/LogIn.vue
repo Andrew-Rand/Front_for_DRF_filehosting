@@ -5,11 +5,32 @@
     <div class='container padd text-center'>
         <h2 class='text-center wel_shad'>Log in</h2>
         <br>
-        <form @submit.prevent='submitForm'>
-            <label>Username:</label>
-            <input class="form-control "  type='text' name='username' v-model = 'username'> <br>
-            <label>Password:</label>
-            <input class="form-control" type='password' name='password' v-model = 'password'> <br>
+        <form class='needs-validation' @submit.prevent='submitForm' novalidate>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
+                    <div class="invalid-feedback">
+                        Please, select user.
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Password</label>
+                <div class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
+                        Please check your password
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
             <button class="btn btn-outline-primary btn-lg" type='submit'>Log in</button>
         </form>
     </div>
@@ -30,6 +51,9 @@ export default {
             password: '',
             is_log: true
         }
+    },
+    mounted() {
+        this.validateForm()
     },
     methods:{
         submitForm() {
@@ -67,10 +91,29 @@ export default {
 
                 })
                 .catch(error => {
-                    alert(error)
+                    //alert(error)
                     console.log(error)
                 })
-        }
+        },
+                validateForm () {
+            'use strict'
+
+          // take all forms
+          var forms = document.querySelectorAll('.needs-validation')
+
+        // cycle to forms
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                 event.stopPropagation()
+             }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+    }
     }
 }
 </script>
