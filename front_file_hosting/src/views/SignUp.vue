@@ -164,10 +164,27 @@ export default {
                     .catch(error => {
                       //  alert(error)
                         console.log(error)
-                        this.passw = false
-                        this.usr = false
-                        this.ag = false
-                        this.em = false
+
+                        console.log(error.response.data.data.error_detail[0])
+
+                        let fields = error.response.data.data.error_detail[0]
+
+                        if (fields.email) {
+                            this.em = false
+                        }
+
+                        if (fields.password) {
+                            this.passw = false
+                        }
+
+                         if (fields.username) {
+                            this.usr = false
+                        }
+
+                         if (fields.age) {
+                            this.ag = false
+                        }
+
                     })
         }},
         validateForm () {

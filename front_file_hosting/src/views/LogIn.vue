@@ -124,13 +124,6 @@ export default {
                         console.log(this.passw, this.usr)
                         console.log(error.response.data.data.error_detail)
 
-
-                        let selectObject = error.response.data.data.error_detail
-                        for (var i = 0; i < selectObject.length; i++) {
-                                console.log(selectObject[i])
-                            }
-
-
                     })
                 }
         },
