@@ -68,7 +68,14 @@ export default {
                 .then(
                     response => {
                         console.log(response)
-                        this.file_data = response.data.data.result
+
+                        let filelist = response.data.data.result
+
+                        localStorage.setItem('filelist', JSON.stringify(filelist))
+
+                        this.$store.commit('SetFilelist', filelist)
+
+                        this.file_data = JSON.parse(localStorage.getItem('filelist'))
 
                         let tumb_array = []
                         let arrayLength = this.file_data.length;
@@ -170,7 +177,14 @@ export default {
                 .then(
                     response => {
                         console.log(response)
-                        this.file_data = response.data.data.result
+
+                        let filelist = response.data.data.result
+
+                        localStorage.setItem('filelist', JSON.stringify(filelist))
+
+                        this.$store.commit('SetFilelist', filelist)
+
+                        this.file_data = JSON.parse(localStorage.getItem('filelist'))
 
                         let tumb_array = []
                         let arrayLength = this.file_data.length;
@@ -203,7 +217,14 @@ export default {
                 .then(
                     response => {
                         console.log(response)
-                        this.file_data = response.data.data.result
+
+                        let filelist = response.data.data.result
+
+                        localStorage.setItem('filelist', JSON.stringify(filelist))
+
+                        this.$store.commit('SetFilelist', filelist)
+
+                        this.file_data = JSON.parse(localStorage.getItem('filelist'))
 
                         let tumb_array = []
                         let arrayLength = this.file_data.length;
@@ -236,6 +257,45 @@ export default {
                 .then(response => {
                     console.log(response)
                     this.$router.push('/files')
+
+                    axios({
+                    url: config.BaseFileUrl + '/?page=' + this.pageNumber,
+                    method: 'GET',
+                    })
+                    .then(
+                        response => {
+                        console.log(response)
+
+                        let filelist = response.data.data.result
+
+                        localStorage.setItem('filelist', JSON.stringify(filelist))
+
+                        this.$store.commit('SetFilelist', filelist)
+
+                        this.file_data = JSON.parse(localStorage.getItem('filelist'))
+
+                        let tumb_array = []
+                        let arrayLength = this.file_data.length;
+                        for (var i = 0; i < arrayLength; i++) {
+                            let file_name = this.file_data[i].name
+                            let string_array = file_name.split('.')
+                            tumb_array.push(config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            console.log(tumb_array)
+                            //Do something
+                        }
+
+                        this.image = tumb_array
+
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                        this.pageNumber++
+                    }
+                )
+
+
                 })
                 .catch(error => {
                     console.log(error)
