@@ -158,6 +158,9 @@ export default {
                 .catch(error => {
                     console.log(error)
 
+                        this.ag = true
+                        this.em = true
+
                     let fields = error.response.data.data.error_detail[0]
 
                         this.ag = true

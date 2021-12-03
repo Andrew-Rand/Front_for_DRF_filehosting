@@ -4,16 +4,75 @@
 
     <div class='container padd text-center'>
         <br>
-        <form @submit.prevent='submitForm'>
-            <label>Password:</label>
-            <input class="form-control" type='password' name='password' v-model = 'password'> <br>
-            <label>New Password:</label>
-            <input class="form-control" type='password' name='new_password' v-model = 'new_password'> <br>
-            <label>Confirm new password:</label>
-            <input class="form-control" type='password' name='new_password_repeated' v-model = 'new_password_repeated'> <br>
+
+
+    <div>
+         <form class='needs-validation' @submit.prevent='submitForm' novalidate>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Password</label>
+                <div v-if="passw" class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-tooltip">
+                        Please check your password
+                    </div>
+                </div>
+
+                <div v-if="!passw" class="input-group has-validation">
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
+                        Please, check your password and try again
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">New Password</label>
+                <div v-if="passwn" class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'Password must contain upper, lower, number and spec char' required>
+                    <div class="invalid-tooltip">
+                        Please add new password
+                    </div>
+                </div>
+
+                <div v-if="!passwn" class="input-group has-validation">
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'Repeat new password' required>
+                    <div class="invalid-feedback">
+                        Please, add new password and try again
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label for="validationCustomUsername" class="form-label">Confirm new password:</label>
+                <div v-if="passwr" class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Password' required>
+                    <div class="invalid-tooltip">
+                        Please repeat your your password
+                    </div>
+                </div>
+
+                <div v-if="!passwr" class="input-group has-validation">
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
+                        Please, repeat new and try again
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
             <button class="btn btn-outline-primary btn-lg" type='submit'>Change Password</button>
         </form>
+
+
     </div>
+    </div>
+
 </template>
 
 <script>
@@ -29,8 +88,14 @@ export default {
         return {
             'password': '',
             'new_password': '',
-            'new_password_repeated': ''
+            'new_password_repeated': '',
+            'passw': true,
+            'passwn': true,
+            'passwr': true
         }
+    },
+    mounted() {
+        this.validateForm()
     },
     methods: {
         submitForm(){
@@ -39,17 +104,79 @@ export default {
                 new_password: this.new_password,
                 new_password_repeated: this.new_password_repeated,
             }
+
+            var re = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{10,}/
+
+            if (this.new_password.match(re) && this.new_password_repeated.match(re)) {
+
+            if (this.password && this.new_password && this.new_password_repeated){
+
             axios
                 .put('change_password/', formData)
                 .then(response => {
                     console.log(response)
+
+                    this.passw = true,
+                    this.passwn = true,
+                    this.passwr = true
+
                     this.$router.push('/login')
                 })
                 .catch(error => {
                     console.log(error)
-                    alert(error)
+                    //alert(error)
+
+                    this.passw = false,
+                    this.passwn = false,
+                    this.passwr = false
+
+
+                    let fields = error.response.data.data.error_detail[0].non_field_errors
+
+                    this.passw = true,
+                    this.passwn = true,
+                    this.passwr = true
+
+                        if (fields.includes("{'incorrect password'}")) {
+                            this.passw = false
+                        }
+
+                        if (fields.includes("{'new passwords do not match'}")) {
+                            this.passwn = false
+                            this.passwr = false
+                        }
+
+                        if (fields.age) {
+                            this.ag = false
+                        }
                 })
-        }
+        }} else {
+            alert("new password" + this.new_password)
+            alert("repeat" + this.new_password_repeated)
+
+            this.passwn = false
+            this.passwr = false
+        }},
+
+        validateForm () {
+            'use strict'
+
+          // take all forms
+          var forms = document.querySelectorAll('.needs-validation')
+
+        // cycle to forms
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                 event.stopPropagation()
+             }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+    }
     }
 }
 </script>
