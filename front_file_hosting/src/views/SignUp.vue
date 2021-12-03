@@ -169,6 +169,12 @@ export default {
 
                         let fields = error.response.data.data.error_detail[0]
 
+                        this.passw = true
+                        this.usr = true
+                        this.ag = true
+                        this.em = true
+
+
                         if (fields.email) {
                             this.em = false
                         }
