@@ -4,74 +4,74 @@
 
     <div class='container pad text-center'>
         <h3 class='text-center wel_shad'>Change password</h3>
-         </div>
+    </div>
 
     <div class='container padd text-center'>
         <br>
 
 
-    <div>
-         <form class='needs-validation' @submit.prevent='submitForm' novalidate>
+        <div>
+             <form class='needs-validation' @submit.prevent='submitForm' novalidate>
 
-            <div>
-                <div v-if="passw" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
-                    <div class="invalid-tooltip">
-                        Please check your password
+                <div>
+                    <div v-if="passw" class="input-group has-validation">
+                        <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                        <div class="invalid-tooltip">
+                            Please check your password
+                        </div>
+                    </div>
+
+                    <div v-if="!passw" class="input-group has-validation">
+                        <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                        <div class="invalid-feedback">
+                            Please, check your password and try again
+                        </div>
                     </div>
                 </div>
 
-                <div v-if="!passw" class="input-group has-validation">
-                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
-                    <div class="invalid-feedback">
-                        Please, check your password and try again
+                <br>
+
+                <div>
+                    <div v-if="passwn" class="input-group has-validation">
+                        <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'New password' required>
+                        <div class="invalid-tooltip">
+                            Please add new password
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <br>
-
-            <div>
-                <div v-if="passwn" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'New password' required>
-                    <div class="invalid-tooltip">
-                        Please add new password
-                    </div>
-                </div>
-
-                <div v-if="!passwn" class="input-group has-validation">
-                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'Repeat new password' required>
-                    <div class="invalid-feedback">
-                        Please, add new password and try again
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div>
-                <div v-if="passwr" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
-                    <div class="invalid-tooltip">
-                        Please repeat your your password
+                    <div v-if="!passwn" class="input-group has-validation">
+                        <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'Repeat new password' required>
+                        <div class="invalid-feedback">
+                            Please, add new password and try again
+                        </div>
                     </div>
                 </div>
 
-                <div v-if="!passwr" class="input-group has-validation">
-                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
-                    <div class="invalid-feedback">
-                        Please, repeat new and try again
+                <br>
+
+                <div>
+                    <div v-if="passwr" class="input-group has-validation">
+                        <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
+                        <div class="invalid-tooltip">
+                            Please repeat your your password
+                        </div>
+                    </div>
+
+                    <div v-if="!passwr" class="input-group has-validation">
+                        <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
+                        <div class="invalid-feedback">
+                            Please, repeat new and try again
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <br>
+                <br>
 
-            <button class="btn btn-outline-primary btn-lg" type='submit'>Change Password</button>
-        </form>
+                <button class="btn btn-outline-primary btn-lg" type='submit'>Change Password</button>
+            </form>
 
 
-    </div>
+        </div>
     </div>
 
 </template>
