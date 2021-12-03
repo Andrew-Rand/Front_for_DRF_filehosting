@@ -23,8 +23,8 @@ export default {
             const refresh = ''
 
 
-            localStorage.removeItem('access')
-            localStorage.removeItem('refresh')
+            localStorage.removeItem('access', access)
+            localStorage.removeItem('refresh', refresh)
 
 
             this.$store.commit('setAccess', access)

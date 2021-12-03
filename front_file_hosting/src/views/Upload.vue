@@ -15,6 +15,8 @@
         </div>
         <br><br>
 
+        <div v-if="fileupload">File successfully uploaded!</div>
+
 
         <uploading
             v-for="(file, index) in files"
@@ -44,6 +46,7 @@ export default {
     },
     data() {
         return {
+            fileupload: false,
             show: true,
             files: [],
             r: false,
@@ -75,11 +78,31 @@ export default {
         this.r.assignDrop(this.$refs.file);
         this.r.on('fileAdded', (file) => {
 
+            const fileupload = false
+
+            localStorage.setItem('fileupload', fileupload)
+            this.$store.commit('SetFileupload', fileupload)
+
+            this.fileupload = localStorage.getItem('fileupload')
+
             this.show = false
 
             try {
 
             if (file.size > config.ChunkSize) {
+
+
+
+            const fileupload = false
+
+            localStorage.setItem('fileupload', fileupload)
+            this.$store.commit('SetFileupload', fileupload)
+
+            this.fileupload = localStorage.getItem('fileupload')
+
+
+
+
                 file.hasUploaded = false
                 this.files.push({
                     file,
@@ -108,7 +131,17 @@ export default {
                     axios.post(config.BaseFileUrl + 'file-upload/', formData)
                          .then(resp => {
                                 this.show = true
+
+
+
                                 console.log(resp.data)
+                                const fileupload = true
+
+                                localStorage.setItem('fileupload', fileupload)
+                                this.$store.commit('SetFileupload', fileupload)
+
+                                this.fileupload = localStorage.getItem('fileupload')
+
                          })
                          .catch(e => {
                              let errorStatus = e.message.substr(e.message.length - 3);

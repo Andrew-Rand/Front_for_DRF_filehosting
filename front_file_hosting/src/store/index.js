@@ -16,6 +16,7 @@ export default createStore({
             state.user_id = localStorage.getItem('user_id')
             state.uploading = localStorage.getItem('uploading')
             state.filelist = localStorage.getItem('filelist')
+            state.fileupload = localStorage.getItem('fileupload')
         } else {
             state.access = ''
             state.refresh = ''
@@ -23,6 +24,7 @@ export default createStore({
             state.user_id = ''
             state.uploading = false
             state.filelist = []
+            state.fileupload = false
         }
     },
     setAccess(state, access) {
@@ -42,6 +44,9 @@ export default createStore({
     },
     SetFilelist(state, filelist){
         state.filelist = filelist
+    },
+    SetFileupload(state, fileupload){
+        state.fileupload = fileupload
     }
   },
   actions: {
