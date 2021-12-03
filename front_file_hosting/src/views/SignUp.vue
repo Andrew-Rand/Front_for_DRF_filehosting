@@ -7,22 +7,38 @@
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Username</label>
-                <div class="input-group has-validation">
+                <div v-if="usr" class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
                     <div class="invalid-tooltip">
                         Please, select user.
                     </div>
                 </div>
+
+                <div v-if="!usr" class="input-group has-validation">
+                    <input type="text" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
+                    <div class="invalid-feedback">
+                        This user already exist
+                    </div>
+                </div>
+
             </div>
 
             <br>
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Email</label>
-                <div class="input-group has-validation">
+                <div v-if="em" class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                     <input type="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
                     <div class="invalid-tooltip">
+                        Please, use valid email.
+                    </div>
+                </div>
+
+                <div v-if="!em" class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control is-invalid" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
+                    <div class="invalid-feedback">
                         Please, use valid email.
                     </div>
                 </div>
@@ -56,9 +72,16 @@
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Age</label>
-                <div class="input-group has-validation">
-                    <input type="age" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
+                <div v-if="ag" class="input-group has-validation">
+                    <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
                     <div class="invalid-tooltip">
+                        Select your age from 5 to 100 years
+                    </div>
+                </div>
+
+                <div v-if="!ag" class="input-group has-validation">
+                    <input type="number" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
+                    <div class="invalid-feedback">
                         Select your age from 5 to 100 years
                     </div>
                 </div>
@@ -68,10 +91,17 @@
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Password</label>
-                <div class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password must contains number, lowercase, uppercase and spec char' required>
+                <div v-if="passw" class="input-group has-validation">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password must contain upper, lower, number and spec char' required>
                     <div class="invalid-tooltip">
-                        Please check your password. Must contains number, lowercase, uppercase and spec char
+                        Password must contain upper, lower, number and spec char
+                    </div>
+                </div>
+
+                <div v-if="!passw" class="input-group has-validation">
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
+                        Password must contain upper, lower, number and spec char
                     </div>
                 </div>
             </div>
@@ -100,6 +130,10 @@ export default {
             'password': '',
             'username': '',
             'age': '',
+            'usr': true,
+            'passw': true,
+            'ag': true,
+            'em': true
         }
     },
     mounted() {
@@ -115,17 +149,27 @@ export default {
                 username: this.username,
                 age: this.age,
             }
-            axios
-                .post('register/', formData)
-                .then(response => {
-                    console.log(response)
-                    this.$router.push('/login')
-                })
-                .catch(error => {
-                  //  alert(error)
-                    console.log(error)
-                })
-        },
+            if (this.username && this.password && this.first_name && this.last_name && this.email && this.age) {
+                axios
+                    .post('register/', formData)
+                    .then(response => {
+                        console.log(response)
+                        this.$router.push('/login')
+
+                        this.passw = true
+                        this.usr = true
+                        this.ag = true
+                        this.em = true
+                    })
+                    .catch(error => {
+                      //  alert(error)
+                        console.log(error)
+                        this.passw = false
+                        this.usr = false
+                        this.ag = false
+                        this.em = false
+                    })
+        }},
         validateForm () {
             'use strict'
 
