@@ -9,7 +9,7 @@
                 <label for="validationCustomUsername" class="form-label">Username</label>
                 <div class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Please, select user.
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                     <input type="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Please, use valid email.
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                 <label for="validationCustomUsername" class="form-label">Name</label>
                 <div class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'first_name' placeholder='Name' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         First name must contain at least 1 letter
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <label for="validationCustomUsername" class="form-label">Last name</label>
                 <div class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'last_name' placeholder='Lastname' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         First name must contain at least 1 letter
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                 <label for="validationCustomUsername" class="form-label">Age</label>
                 <div class="input-group has-validation">
                     <input type="age" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Select your age from 5 to 100 years
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <label for="validationCustomUsername" class="form-label">Password</label>
                 <div class="input-group has-validation">
                     <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password must contains number, lowercase, uppercase and spec char' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Please check your password. Must contains number, lowercase, uppercase and spec char
                     </div>
                 </div>

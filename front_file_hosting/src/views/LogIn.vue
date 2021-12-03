@@ -9,22 +9,37 @@
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Username</label>
-                <div class="input-group has-validation">
+                <div v-if="usr" class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Please, select user.
                     </div>
                 </div>
+
+                <div v-if="!usr" class="input-group has-validation">
+                    <input type="text" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
+                    <div class="invalid-feedback">
+                        Please, select user
+                    </div>
+                </div>
+
             </div>
 
             <br>
 
             <div>
                 <label for="validationCustomUsername" class="form-label">Password</label>
-                <div class="input-group has-validation">
+                <div v-if="passw" class="input-group has-validation">
                     <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-tooltip">
                         Please check your password
+                    </div>
+                </div>
+
+                <div v-if="!passw" class="input-group has-validation">
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
+                        Please, check your password and try again
                     </div>
                 </div>
             </div>
@@ -49,7 +64,9 @@ export default {
         return{
             username: '',
             password: '',
-            is_log: true
+            is_log: true,
+            passw: true,
+            usr: true,
         }
     },
     mounted() {
@@ -57,43 +74,65 @@ export default {
     },
     methods:{
         submitForm() {
-            axios.defaults.headers.common['Authorization'] = ''
-            localStorage.removeItem('access')
+            if (this.username && this.password) {
+                axios.defaults.headers.common['Authorization'] = ''
+                localStorage.removeItem('access')
 
-            const formData = {
-                username: this.username,
-                password: this.password
-            }
+                const formData = {
+                    username: this.username,
+                    password: this.password
+                }
 
-            axios
-                .post('login/', formData)
-                .then(response => {
+                axios
+                    .post('login/', formData)
+                    .then(response => {
 
-                    console.log(response)
+                        console.log(response)
 
-                    console.log(response.data.data.result.access_token)
-                    console.log(response.data.data.result.refresh_token)
+                        console.log(response.data.data.result.access_token)
+                        console.log(response.data.data.result.refresh_token)
 
-                    const access = response.data.data.result.access_token
-                    const refresh = response.data.data.result.refresh_token
+                        const access = response.data.data.result.access_token
+                        const refresh = response.data.data.result.refresh_token
 
-                    localStorage.setItem('access', access)
-                    localStorage.setItem('refresh', refresh)
+                        localStorage.setItem('access', access)
+                        localStorage.setItem('refresh', refresh)
 
-                    this.$store.commit('setAccess', access)
-                    this.$store.commit('setRefresh', refresh)
+                        this.$store.commit('setAccess', access)
+                        this.$store.commit('setRefresh', refresh)
 
 
-                    axios.defaults.headers.common['Authorization'] = access
+                        axios.defaults.headers.common['Authorization'] = access
 
-                    this.$router.push('/files')
-                    this.is_log = true
+                        this.$router.push('/files')
+                        this.is_log = true
+                        this.passw = true
+                        this.usr = true
 
-                })
-                .catch(error => {
-                    //alert(error)
-                    console.log(error)
-                })
+                        console.log(response.data)
+
+                        if (response.data.data == 0) {
+                        console.log('hi')
+                        }
+
+
+                    })
+                    .catch(error => {
+                        //alert(error)
+                        this.passw = false
+                        this.usr = false
+                        console.log(this.passw, this.usr)
+                        console.log(error.response.data.data.error_detail)
+
+
+                        let selectObject = error.response.data.data.error_detail
+                        for (var i = 0; i < selectObject.length; i++) {
+                                console.log(selectObject[i])
+                            }
+
+
+                    })
+                }
         },
                 validateForm () {
             'use strict'
