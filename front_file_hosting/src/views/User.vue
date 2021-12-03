@@ -3,7 +3,7 @@
     <Nav/>
 
     <div class='container pad text-center'>
-        <h2 class='text-center wel_shad'>About {{ user_data.username }}</h2>
+        <h3 class='text-center wel_shad'>About {{ user_data.username }}</h3>
         <span hidden :src='userdata'>{{ user_data }}</span>
     </div>
     <br><br>

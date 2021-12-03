@@ -3,13 +3,14 @@
     <Nav/>
 
     <div class='padd container text-center'>
+        <h3 class='text-center wel_shad'>Create profile</h3>
+        <br>
         <form class='needs-validation' @submit.prevent='submitForm' novalidate>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Username</label>
                 <div v-if="usr" class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
-                    <div class="invalid-tooltip">
+                    <div class="invalid-feedback">
                         Please, select user.
                     </div>
                 </div>
@@ -26,12 +27,12 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Email</label>
+
                 <div v-if="em" class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    <input type="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
-                    <div class="invalid-tooltip">
-                        Please, use valid email.
+                    <input type="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='Email' required>
+                    <div class="invalid-feedback">
+                        Please, use valid email, like example@gmail.com
                     </div>
                 </div>
 
@@ -39,7 +40,7 @@
                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                     <input type="email" class="form-control is-invalid" id="validationCustomEmail" aria-describedby="inputGroupPrepend" v-model = 'email' placeholder='example@gmail.com' required>
                     <div class="invalid-feedback">
-                        Please, use valid email.
+                        Please, use valid email, like example@gmail.com
                     </div>
                 </div>
             </div>
@@ -47,10 +48,9 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Name</label>
                 <div class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'first_name' placeholder='Name' required>
-                    <div class="invalid-tooltip">
+                    <div class="invalid-feedback">
                         First name must contain at least 1 letter
                     </div>
                 </div>
@@ -59,10 +59,10 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Last name</label>
+
                 <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'last_name' placeholder='Lastname' required>
-                    <div class="invalid-tooltip">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'last_name' placeholder='Last name' required>
+                    <div class="invalid-feedback">
                         First name must contain at least 1 letter
                     </div>
                 </div>
@@ -71,16 +71,15 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Age</label>
                 <div v-if="ag" class="input-group has-validation">
-                    <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
-                    <div class="invalid-tooltip">
+                    <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Age' required>
+                    <div class="invalid-feedback">
                         Select your age from 5 to 100 years
                     </div>
                 </div>
 
                 <div v-if="!ag" class="input-group has-validation">
-                    <input type="number" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Select your age from 5 to 100 years' required>
+                    <input type="number" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'age' placeholder='Age' required>
                     <div class="invalid-feedback">
                         Select your age from 5 to 100 years
                     </div>
@@ -90,10 +89,10 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Password</label>
+
                 <div v-if="passw" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password must contain upper, lower, number and spec char' required>
-                    <div class="invalid-tooltip">
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
+                    <div class="invalid-feedback">
                         Password must contain upper, lower, number and spec char
                     </div>
                 </div>

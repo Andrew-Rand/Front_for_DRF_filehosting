@@ -3,15 +3,15 @@
     <Nav/>
 
     <div class='container padd text-center'>
-        <h2 class='text-center wel_shad'>Log in</h2>
+        <h3 class='text-center wel_shad'>Log in</h3>
         <br>
         <form class='needs-validation' @submit.prevent='submitForm' novalidate>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Username</label>
+
                 <div v-if="usr" class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
-                    <div class="invalid-tooltip">
+                    <div class="invalid-feedback">
                         Please, select user.
                     </div>
                 </div>
@@ -28,10 +28,10 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Password</label>
+
                 <div v-if="passw" class="input-group has-validation">
                     <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
-                    <div class="invalid-tooltip">
+                    <div class="invalid-feedback">
                         Please check your password
                     </div>
                 </div>
@@ -104,12 +104,14 @@ export default {
 
                         axios.defaults.headers.common['Authorization'] = access
 
-                        this.$router.push('/files')
+
                         this.is_log = true
                         this.passw = true
                         this.usr = true
 
                         console.log(response.data)
+
+                        this.$router.push('/files')
 
                         if (response.data.data == 0) {
                         console.log('hi')

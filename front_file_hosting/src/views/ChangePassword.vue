@@ -2,6 +2,10 @@
 
     <Nav/>
 
+    <div class='container pad text-center'>
+        <h3 class='text-center wel_shad'>Change password</h3>
+         </div>
+
     <div class='container padd text-center'>
         <br>
 
@@ -10,7 +14,6 @@
          <form class='needs-validation' @submit.prevent='submitForm' novalidate>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Password</label>
                 <div v-if="passw" class="input-group has-validation">
                     <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
                     <div class="invalid-tooltip">
@@ -29,9 +32,8 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">New Password</label>
                 <div v-if="passwn" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'Password must contain upper, lower, number and spec char' required>
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'New password' required>
                     <div class="invalid-tooltip">
                         Please add new password
                     </div>
@@ -48,16 +50,15 @@
             <br>
 
             <div>
-                <label for="validationCustomUsername" class="form-label">Confirm new password:</label>
                 <div v-if="passwr" class="input-group has-validation">
-                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Password' required>
+                    <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
                     <div class="invalid-tooltip">
                         Please repeat your your password
                     </div>
                 </div>
 
                 <div v-if="!passwr" class="input-group has-validation">
-                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Password' required>
+                    <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
                     <div class="invalid-feedback">
                         Please, repeat new and try again
                     </div>

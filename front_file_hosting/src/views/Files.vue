@@ -10,20 +10,20 @@
             <div class='container' v-for='(file, index) in file_data' :key='file.id'>
 
 
-                <div class="row border">
-                    <div class="col-auto border">
+                <div class="row border rounded-3">
+                    <div class="col-auto">
                         <img style="cursor:pointer" width="75" height="75" class='me-3' :src="image[index]" @click='Detail(file.id)'/>
                     </div>
-                    <div class="col-md border">
+                    <div class="col-md">
                         <p style="margin:0">{{ file.name}}</p>
                     </div>
-                    <div class="col-auto border">
+                    <div class="col-auto">
                         <img style="cursor:pointer" width="50" height="50" src="../assets/about.png" @click='Detail(file.id)' alt="detail"/>
                     </div>
-                    <div class="col-auto border">
+                    <div class="col-auto">
                         <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download(file.id, file.name)' alt="download" />
                     </div>
-                    <div class="col-auto border">
+                    <div class="col-auto">
                         <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
                     </div>
                 </div>
@@ -235,7 +235,7 @@ export default {
                 })
                 .then(response => {
                     console.log(response)
-                    this.$forceUpdate();
+                    this.$router.push('/files')
                 })
                 .catch(error => {
                     console.log(error)
