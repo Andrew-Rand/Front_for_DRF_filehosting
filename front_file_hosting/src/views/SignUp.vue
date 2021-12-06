@@ -176,18 +176,22 @@ export default {
 
                         if (fields.email) {
                             this.em = false
+                            this.email = ''
                         }
 
                         if (fields.password) {
                             this.passw = false
+                            this.password = ''
                         }
 
                          if (fields.username) {
                             this.usr = false
+                            this.username = ''
                         }
 
                          if (fields.age) {
                             this.ag = false
+                            this.age = ''
                         }
 
                     })

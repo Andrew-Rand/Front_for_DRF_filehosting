@@ -4,22 +4,32 @@
 
     <div class='container pad text-center'>
         <div class="container">
-            <br>
-            <h4>{{ file_data.name }}</h4><br>
-            <img :src="image" />
+        <br><br>
+        <h4>{{ file_data.name }}</h4><br>
+
+        <div class="row border rounded-3">
+
+            <div class="col-auto">
+            <img :src="image" width="300" height="300" class='me-3' />
+            </div>
+            <div class="col-sm">
             <p>Type: {{ file_data.type }}</p>
             <p>Date created: {{ file_data.date_created }}</p>
             <p>Date modified: {{ file_data.date_modified }}</p>
             <form @submit.prevent='submitForm'>
                 <label>Description:</label>
-                <input class="form-control" type='description' name='description' v-model = 'description'>
-                <button class="btn btn-outline-warning text-center" type='submit'>Change description</button>
+                <textarea class="form-control" name='description' v-model = 'description'></textarea>
+                <button class="btn btn-outline-primary text-center" type='submit'>Change description</button>
             </form>
+            </div>
+            <div class="col-auto">
             <br>
-            <button class="btn btn-outline-success btn-lg btn-block" @click='Download(file_data.name)'>Download</button><br>
+            <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download' alt="download" />
             <br>
             <br>
-            <button class="btn btn-outline-danger" @click='Delete'>Delete file</button>
+            <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
+            </div>
+        </div>
         </div>
     </div>
 </template>
@@ -105,7 +115,6 @@ export default {
                     document.body.appendChild(fileLink);
                     fileLink.click();
 
-                    this.$router.push('/files')
                 })
                 .catch(
                     error => {

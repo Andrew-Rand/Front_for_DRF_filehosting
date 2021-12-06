@@ -9,17 +9,10 @@
 
             <div>
 
-                <div v-if="usr" class="input-group has-validation">
+                <div class="input-group has-validation">
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
                     <div class="invalid-feedback">
                         Please, select user.
-                    </div>
-                </div>
-
-                <div v-if="!usr" class="input-group has-validation">
-                    <input type="text" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'username' placeholder='Username' required>
-                    <div class="invalid-feedback">
-                        Please, select user
                     </div>
                 </div>
 
@@ -123,6 +116,8 @@ export default {
                         //alert(error)
                         this.passw = false
                         this.usr = false
+
+                        this.password = ''
                         console.log(this.passw, this.usr)
                         console.log(error.response.data.data.error_detail)
 

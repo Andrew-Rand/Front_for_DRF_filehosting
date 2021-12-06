@@ -16,7 +16,7 @@
                 <div>
                     <div v-if="passw" class="input-group has-validation">
                         <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'password' placeholder= 'Password' required>
-                        <div class="invalid-tooltip">
+                        <div class="invalid-feedback">
                             Please check your password
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                 <div>
                     <div v-if="passwn" class="input-group has-validation">
                         <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password' placeholder= 'New password' required>
-                        <div class="invalid-tooltip">
+                        <div class="invalid-feedback">
                             Please add new password
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div>
                     <div v-if="passwr" class="input-group has-validation">
                         <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
-                        <div class="invalid-tooltip">
+                        <div class="invalid-feedback">
                             Please repeat your your password
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                     <div v-if="!passwr" class="input-group has-validation">
                         <input type="password" class="form-control is-invalid" id="validationCustomUsername" aria-describedby="inputGroupPrepend" v-model = 'new_password_repeated' placeholder= 'Confirm new password' required>
                         <div class="invalid-feedback">
-                            Please, repeat new and try again
+                            Please, repeat new password and try again
                         </div>
                     </div>
                 </div>
@@ -140,11 +140,14 @@ export default {
 
                         if (fields.includes("{'incorrect password'}")) {
                             this.passw = false
+                            this.password = ''
                         }
 
                         if (fields.includes("{'new passwords do not match'}")) {
                             this.passwn = false
                             this.passwr = false
+                            this.new_password = ''
+                            this.new_password_repeated = ''
                         }
 
                         if (fields.age) {
@@ -152,8 +155,7 @@ export default {
                         }
                 })
         }} else {
-            alert("new password" + this.new_password)
-            alert("repeat" + this.new_password_repeated)
+
 
             this.passwn = false
             this.passwr = false
