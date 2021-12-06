@@ -1,5 +1,4 @@
 <template>
-
     <Nav/>
 
     <div class='container pad text-center'>
@@ -7,29 +6,26 @@
         <br><br>
         <h4>{{ file_data.name }}</h4><br>
 
-        <div class="row border rounded-3">
+            <div class="row border rounded-3">
 
-            <div class="col-auto">
-            <img :src="image" width="300" height="300" class='me-3' />
+                <div class="col-auto">
+                    <img :src="image" width="300" height="300" class='me-3' />
+                </div>
+                <div class="col-sm">
+                    <p>Type: {{ file_data.type }}</p>
+                    <p>Date created: {{ file_data.date_created }}</p>
+                    <p>Date modified: {{ file_data.date_modified }}</p>
+                    <form @submit.prevent='submitForm'>
+                        <label>Description:</label>
+                        <textarea class="form-control" name='description' v-model = 'description'></textarea>
+                        <button class="btn btn-outline-primary text-center" type='submit'>Change description</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download' alt="download" />
+                    <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
+                </div>
             </div>
-            <div class="col-sm">
-            <p>Type: {{ file_data.type }}</p>
-            <p>Date created: {{ file_data.date_created }}</p>
-            <p>Date modified: {{ file_data.date_modified }}</p>
-            <form @submit.prevent='submitForm'>
-                <label>Description:</label>
-                <textarea class="form-control" name='description' v-model = 'description'></textarea>
-                <button class="btn btn-outline-primary text-center" type='submit'>Change description</button>
-            </form>
-            </div>
-            <div class="col-auto">
-            <br>
-            <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download' alt="download" />
-            <br>
-            <br>
-            <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
-            </div>
-        </div>
         </div>
     </div>
 </template>
