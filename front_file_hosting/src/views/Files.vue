@@ -6,7 +6,32 @@
         <div class="container text-center p-2">
             <button class="btn btn-outline-primary btn-lg me-5" @click='DownloadAll'>Download ALL</button>
             <button class="btn btn-primary btn-lg" @click='toUpload'>Upload new file</button>
-                <br><br><br>
+                <br><br>
+            <div class="row">
+
+            <div class='col-md-auto'>
+            <h5><a style="cursor:pointer" @click='orderBy("name")'>order by name</a></h5>
+            </div>
+            <div class="col-auto">
+                 <img style="cursor:pointer" width="20" height="20" src="../assets/arrow_up.png" @click='orderBy("name")' alt="detail"/>
+            </div>
+            <div class="col-auto">
+                 <img style="cursor:pointer" width="20" height="20" src="../assets/arrow_down.png" @click='orderBy("-name")' alt="detail"/>
+            </div>
+
+            <div class='col-md-auto'>
+            <h5><a style="cursor:pointer" @click='orderBy("date_modified")'>     order by date</a></h5>
+            </div>
+            <div class="col-auto">
+                 <img style="cursor:pointer" width="20" height="20" src="../assets/arrow_up.png" @click='orderBy("date_modified")' alt="detail"/>
+            </div>
+            <div class="col-auto">
+                 <img style="cursor:pointer" width="20" height="20" src="../assets/arrow_down.png" @click='orderBy("-date_modified")' alt="detail"/>
+            </div>
+
+            </div>
+                <br>
+
             <div class='container' v-for='(file, index) in file_data' :key='file.id'>
 
 
@@ -53,6 +78,7 @@ export default {
             file_data: [],
             id: '',
             pageNumber: 1,
+            orderW: '',
         }
     },
     mounted() {
@@ -308,7 +334,46 @@ export default {
         },
         toUpload() {
             window.location.href = '#/upload'
-        }
+        },
+        orderBy(name) {
+
+                this.orderW = name
+                    axios({
+                    url: config.BaseFileUrl + '/?page=' + this.pageNumber + '&ordering=' + this.orderW,
+                    method: 'GET',
+                })
+                .then(
+                    response => {
+                        console.log(response)
+
+                        let filelist = response.data.data.result
+
+                        localStorage.setItem('filelist', JSON.stringify(filelist))
+
+                        this.$store.commit('SetFilelist', filelist)
+
+                        this.file_data = JSON.parse(localStorage.getItem('filelist'))
+
+                        let tumb_array = []
+                        let arrayLength = this.file_data.length;
+                        for (var i = 0; i < arrayLength; i++) {
+                            let file_name = this.file_data[i].name
+                            let string_array = file_name.split('.')
+                            tumb_array.push(config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png')
+                            console.log(tumb_array)
+                            //Do something
+                        }
+
+                        this.image = tumb_array
+
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
+        },
     }
 }
 </script>

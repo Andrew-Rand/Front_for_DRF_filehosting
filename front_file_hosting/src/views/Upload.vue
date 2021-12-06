@@ -15,7 +15,9 @@
         </div>
         <br><br>
 
-        <div v-if="fileupload">File successfully uploaded!</div>
+        <div v-if="fileupl">
+            File successfully uploaded!
+        </div>
 
 
         <uploading
@@ -46,7 +48,7 @@ export default {
     },
     data() {
         return {
-            fileupload: false,
+            fileupl: false,
             show: true,
             files: [],
             r: false,
@@ -78,27 +80,33 @@ export default {
         this.r.assignDrop(this.$refs.file);
         this.r.on('fileAdded', (file) => {
 
-            const fileupload = false
+            let fileupload = false
+
+            localStorage.removeItem('fileupload')
 
             localStorage.setItem('fileupload', fileupload)
             this.$store.commit('SetFileupload', fileupload)
 
-            this.fileupload = localStorage.getItem('fileupload')
+            this.fileupl = localStorage.getItem('fileupload')
 
             this.show = false
+
+            console.log(this.fileupl)
 
             try {
 
             if (file.size > config.ChunkSize) {
 
+            localStorage.removeItem('fileupload')
 
-
-            const fileupload = false
+            let fileupload = false
 
             localStorage.setItem('fileupload', fileupload)
             this.$store.commit('SetFileupload', fileupload)
 
-            this.fileupload = localStorage.getItem('fileupload')
+            this.fileupl = localStorage.getItem('fileupload')
+
+            console.log('Start Resumable' + this.fileupl)
 
 
 
@@ -131,16 +139,17 @@ export default {
                     axios.post(config.BaseFileUrl + 'file-upload/', formData)
                          .then(resp => {
                                 this.show = true
-
-
-
+                                console.log(this.fileupl)
                                 console.log(resp.data)
-                                const fileupload = true
+
+                                localStorage.removeItem('fileupload')
+                                let fileupload = true
 
                                 localStorage.setItem('fileupload', fileupload)
                                 this.$store.commit('SetFileupload', fileupload)
 
-                                this.fileupload = localStorage.getItem('fileupload')
+                                this.fileupl = localStorage.getItem('fileupload')
+
 
                          })
                          .catch(e => {
