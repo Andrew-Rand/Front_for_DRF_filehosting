@@ -1,13 +1,23 @@
 <template>
+
+    <Nav/>
+
     <div class='container pad'>
         <h2 class='text-center'>Upload files</h2>
     </div>
     <div class='container pad'>
         <br>
-        <label>Add description:</label>
+        <label class="text-primary">Add description:</label>
         <input class="form-control" type='text' ref='description'><br>
         <label>Upload your file:</label>
-        <input class="form-control" type='file' ref='file'>
+        <div  class="input-group input-group-lg">
+            <input class="form-control blink_me" type='file' ref='file'>
+        </div>
+        <br><br>
+
+        <div v-if="fileupl">
+            File successfully uploaded!
+        </div>
 
 
         <uploading
@@ -23,18 +33,23 @@
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 import CryptoJS from 'crypto-js'
 import Resumable from './resumable.js'
 import Uploading from './UploadingHelper'
 const config = require('../config');
 
+
 export default {
     name: "ResumableUpload",
     components: {
-        Uploading
+        Uploading,
+        Nav
     },
     data() {
         return {
+            fileupl: false,
+            show: true,
             files: [],
             r: false,
             description: ''
@@ -64,9 +79,38 @@ export default {
         this.r.assignBrowse(this.$refs.file);
         this.r.assignDrop(this.$refs.file);
         this.r.on('fileAdded', (file) => {
+
+            let fileupload = false
+
+            localStorage.removeItem('fileupload')
+
+            localStorage.setItem('fileupload', fileupload)
+            this.$store.commit('SetFileupload', fileupload)
+
+            this.fileupl = localStorage.getItem('fileupload')
+
+            this.show = false
+
+            console.log(this.fileupl)
+
             try {
 
             if (file.size > config.ChunkSize) {
+
+            localStorage.removeItem('fileupload')
+
+            let fileupload = false
+
+            localStorage.setItem('fileupload', fileupload)
+            this.$store.commit('SetFileupload', fileupload)
+
+            this.fileupl = localStorage.getItem('fileupload')
+
+            console.log('Start Resumable' + this.fileupl)
+
+
+
+
                 file.hasUploaded = false
                 this.files.push({
                     file,
@@ -83,7 +127,7 @@ export default {
                 formData.append('filename', file.fileName)
                 formData.append('description', this.$refs.description.value)
 
-                delete axios.defaults.headers.common['Authorization'];
+
                 let reader = new FileReader();
                 reader.readAsBinaryString(file.file);
                 reader.onload = function () {
@@ -94,7 +138,19 @@ export default {
 
                     axios.post(config.BaseFileUrl + 'file-upload/', formData)
                          .then(resp => {
+                                this.show = true
+                                console.log(this.fileupl)
                                 console.log(resp.data)
+
+                                localStorage.removeItem('fileupload')
+                                let fileupload = true
+
+                                localStorage.setItem('fileupload', fileupload)
+                                this.$store.commit('SetFileupload', fileupload)
+
+                                this.fileupl = localStorage.getItem('fileupload')
+
+
                          })
                          .catch(e => {
                              let errorStatus = e.message.substr(e.message.length - 3);
@@ -115,29 +171,35 @@ export default {
 
         this.r.on('fileSuccess', (file) => {
             this.findFile(file).status = 'success'
-            delete axios.defaults.headers.common['Authorization'];
             let description = this.$refs.description.value
+
+            let toRead;
+
             if (description === '') {
                 description = 'None'}
             if (file.size > config.SmallFileLimit) {
-                let toRead = new Blob([file.file.slice(0, config.HashFirstSlice), file.file.slice(config.HashSecondSlice)])
+                toRead = new Blob([file.file.slice(0, config.HashFirstSlice), file.file.slice(config.HashSecondSlice)])
+                console.log('All right')
             } else {
-                let toRead = file.file
+                toRead = file.file
             }
 
-            let reader = new FileReader();
-                reader.readAsBinaryString(file.file);
-                reader.onload = function () {
-                    let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
-                    let md5 = hash.toString();
-                    console.log('file hash:' + md5)
 
+
+            let reader = new FileReader();
+            reader.readAsBinaryString(toRead);
+            reader.onload = function () {
+                 let hash = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(reader.result));
+                 let md5 = hash.toString();
+                 console.log('file hash:' + md5)
 
                     axios({
                       url: config.BaseFileUrl + 'build/?' + 'resumableChunkNumber=1&resumableChunkSize=52428800&resumableCurrentChunkSize=52428800&resumableTotalSize=' + file.size + '&resumableType=text%2Fplain&resumableIdentifier=' +file.uniqueIdentifier+ '&resumableFilename=' +file.fileName+ '&resumableRelativePath=128_mb_file_text_new.txt&resumableTotalChunks=' + file.chunks.length + '&resumableDescription=' + description + '&resumableHash=' + md5  ,
                       method: 'POST',
                     })
                             .then(response => {
+                            this.show = true
+                            //alert('File has built. Please update page!')
                                     console.log(response)
                                 }
                             )
@@ -161,12 +223,6 @@ export default {
             if (progress > localFile.progress)
                 localFile.progress = progress
         })
-        XMLHttpRequest.prototype.open = (function (open) {
-            return function () {
-                open.apply(this, arguments);
-                this.setRequestHeader('Authorization', localStorage.getItem('access'));
-            };
-        })(XMLHttpRequest.prototype.open);
         }
     },
     mounted() {
@@ -176,8 +232,16 @@ export default {
 </script>
 
 <style>
-.pad {
-padding-left: 8vw;
-padding-right: 8vw;
+
+
+.blink_me {
+  animation: blinker 1s linear infinite;
 }
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 </style>

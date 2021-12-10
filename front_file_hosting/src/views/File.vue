@@ -1,33 +1,46 @@
 <template>
-    <div class='container pad'>
-        <h2 class='text-center'>File detail</h2>
+    <Nav/>
+
+    <div class='container pad text-center'>
         <div class="container">
-            <br>
-            <h4>{{ file_data.name}}</h4><br>
-            <p>Type: {{ file_data.type }}</p>
-            <p>Data created: {{ file_data.date_created }}</p>
-            <p>Data modified: {{ file_data.date_modified }}</p>
-            <form @submit.prevent='submitForm'>
-                <label>Description:</label>
-                <input class="form-control" type='description' name='description' v-model = 'description'>
-                <button class="btn btn-outline-warning text-center" type='submit'>Change description</button>
-            </form>
-            <br>
-            <button class="btn btn-outline-success btn-lg btn-block" @click='Download'>Download</button><br>
-            <br>
-            <br>
-            <button class="btn btn-outline-danger" @click='Delete'>Delete file</button>
+        <br><br>
+        <h4>{{ file_data.name }}</h4><br>
+
+            <div class="row border rounded-3">
+
+                <div class="col-auto">
+                    <img :src="image" width="300" height="300" class='me-3' />
+                </div>
+                <div class="col-sm">
+                    <p>Type: {{ file_data.type }}</p>
+                    <p>Date created: {{ file_data.date_created }}</p>
+                    <p>Date modified: {{ file_data.date_modified }}</p>
+                    <form @submit.prevent='submitForm'>
+                        <label>Description:</label>
+                        <textarea class="form-control" name='description' v-model = 'description'></textarea>
+                        <button class="btn btn-outline-primary text-center" type='submit'>Change description</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <img style="cursor:pointer" width="50" height="50" src="../assets/download.png" @click='Download' alt="download" />
+                    <img style="cursor:pointer" width="50" height="50" src="../assets/delete.png" @click='Delete(file.id)' alt="delete"/>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Nav from "../components/Nav.vue"
 
 const config = require('../config');
 
 export default {
     name: 'Files',
+        components: {
+        Nav
+    },
     data() {
         return{
             file_data: []
@@ -48,6 +61,9 @@ export default {
                         console.log(response)
                         this.file_data = response.data
                         this.description = response.data.description
+                        let string_array = this.file_data.name.split('.')
+                        console.log(localStorage.getItem('user_id'))
+                        this.image = config.FileStorageUrl + 'tumbs/' + localStorage.getItem('user_id') + '/' + string_array[0] + '_tumbnail' + '.png'
                     }
                 )
                 .catch(
@@ -77,7 +93,7 @@ export default {
                     alert(error)
                 })
         },
-        Download() {
+        Download(name) {
             console.log('download start')
 
             axios({
@@ -91,11 +107,10 @@ export default {
                     var fileURL = window.URL.createObjectURL(new Blob([response.data]));
                     var fileLink = document.createElement('a');
                     fileLink.href = fileURL;
-                    fileLink.setAttribute('download', 'file.jpg');
+                    fileLink.setAttribute('download', name);
                     document.body.appendChild(fileLink);
                     fileLink.click();
 
-                    this.$router.push('/files')
                 })
                 .catch(
                     error => {
@@ -135,5 +150,8 @@ export default {
 .pad {
 padding-left: 8vw;
 padding-right: 8vw;
+}
+.wel_shad{
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
 }
 </style>

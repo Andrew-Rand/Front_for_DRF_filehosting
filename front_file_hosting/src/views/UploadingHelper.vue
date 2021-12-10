@@ -3,11 +3,11 @@
         <span :class="{
             'status-canceled': status == 'canceled'
         }"> {{ file.fileName }} </span>
-        <small v-if="status == 'success'">done!</small>
-        <small v-else-if="status == 'retrying'">fault, retrying...</small>
-        <small v-else-if="status == 'error'">error! cannot upload file</small>
-        <small v-else-if="status == 'canceled'">cancelled</small>
-        <small v-else>uploading {{ uploadedAmount }}%</small>
+        <small v-if="status == 'success'">  done!</small>
+        <small v-else-if="status == 'retrying'">  fault, retrying...</small>
+        <small v-else-if="status == 'error'">  error! cannot upload file</small>
+        <small v-else-if="status == 'canceled'"> cancelled</small>
+        <small v-else>  uploading {{ uploadedAmount }}%</small>
 
         <span v-if="isUploading">
             <button @click="isPaused ? resume() : pause()">{{ isPaused ? "resume" : "pause" }}</button>

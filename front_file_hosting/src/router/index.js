@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
 import Files from '../views/Files.vue'
@@ -7,15 +6,11 @@ import User from '../views/User.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import Upload from '../views/Upload.vue'
 import File from '../views/File.vue'
+import Logout from '../views/Logout.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/register',
     name: 'Sign up',
     component: SignUp
   },
@@ -48,6 +43,11 @@ const routes = [
     path: '/file-detail',
     name: 'File',
     component: File
+  },
+    {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   }
 ]
 

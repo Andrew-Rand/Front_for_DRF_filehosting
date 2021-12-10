@@ -51,7 +51,7 @@
       dragOverClass: 'dragover',
       throttleProgressCallbacks: 0.5,
       query:{},
-      headers:{},
+      headers:{'Authorization': localStorage.getItem('access')},
       preprocess:null,
       preprocessFile:null,
       method:'multipart',
